@@ -1,6 +1,8 @@
 import { dbConnection } from '#config/db.js';
 import { httpServer } from '#config/http.js';
 
+import '#models/studens.model.js'
+
 const PORT = 8080;
 
 const bootstrap = () => {
