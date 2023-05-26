@@ -1,3 +1,11 @@
-import { hello } from '#lib/hello.js';
+import { httpServer } from '#config/http.js';
 
-hello();
+const PORT = 8080;
+
+const bootstrap = () => {
+    httpServer.listen(PORT, () => {
+        console.log(`listening on port: ${PORT}`);
+    });
+};
+
+bootstrap();
