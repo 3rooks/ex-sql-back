@@ -35,12 +35,16 @@
         "uuid-random": "1.3.2"
     },
     "imports": {
+        "#src/*": "./src/*",
         "#lib/*": "./src/lib/*",
         "#config/*": "./src/config/*",
         "#models/*": "./src/models/*",
         "#constants/*": "./src/constants/*",
         "#repositories/*": "./src/repositories/*",
         "#services/*": "./src/services/*",
-        "#controllers/*": "./src/controllers/*"
+        "#controllers/*": "./src/controllers/*",
+        "#modules/*": "./src/modules/*",
+        "#application/*": "./src/application/*",
+        "#database/*": "./src/database/*"
     }
 }

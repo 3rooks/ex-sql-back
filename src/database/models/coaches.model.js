@@ -1,11 +1,11 @@
-import { sequelize } from '#config/db.js';
 import { ENTITIES } from '#constants/entities.js';
+import { sequelize } from '#src/modules/database/database.js';
 import { DataTypes, Model } from 'sequelize';
 import uuidV4 from 'uuid-random';
 
-export class StudentsModel extends Model {}
+export class CoachesModel extends Model {}
 
-StudentsModel.init(
+CoachesModel.init(
     {
         id: {
             type: DataTypes.UUID,
@@ -23,14 +23,11 @@ StudentsModel.init(
         belt: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        age: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        institute: {
-            type: DataTypes.INTEGER
         }
     },
-    { modelName: ENTITIES.STUDENTS, timestamps: true, sequelize }
+    {
+        modelName: ENTITIES.COACHES,
+        timestamps: true,
+        sequelize
+    }
 );

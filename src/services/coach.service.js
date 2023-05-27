@@ -1,6 +1,6 @@
 export class CoachService {
     constructor(coachRepository) {
-        this.userRepository = coachRepository;
+        this.coachRepository = coachRepository;
     }
 
     async createUser(user) {

@@ -4,13 +4,17 @@
         "module": "Node16",
         "baseUrl": "./",
         "paths": {
+            "#src/*": ["./src/*"],
             "#lib/*": ["./src/lib/*"],
             "#config/*": ["./src/config/*"],
-            "#models/*": ["./src/models/*"],
+            "#models/*": ["src/modules/database/models/*"],
             "#constants/*": ["./src/constants/*"],
             "#repositories/*": ["./src/repositories/*"],
             "#services/*": ["./src/services/*"],
-            "#controllers/*": ["./src/controllers/*"]
+            "#controllers/*": ["src/application/controllers/*"],
+            "#modules/*": ["./src/modules/*"],
+            "#application/*": ["./src/application/*"],
+            "#database/*": ["./src/database/*"]
         }
     }
 }

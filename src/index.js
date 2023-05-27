@@ -1,11 +1,12 @@
-import { Database, sequelize } from '#config/db.js';
 import { HttpServer } from '#config/http.js';
-import expressApp from '#lib/express.js';
+import { Database } from '#database/database.js';
+import application from '#src/application/express.js';
+import { sequelize } from './lib/sequelize.js';
 
 class Bootstrap {
     static async start() {
         await Database.connect(sequelize);
-        HttpServer.connect(expressApp, Number(process.env.PORT));
+        HttpServer.connect(application, Number(process.env.PORT));
     }
 }
 
