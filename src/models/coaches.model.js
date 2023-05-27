@@ -1,14 +1,16 @@
 import { sequelize } from '#config/db.js';
-import { DataTypes } from 'sequelize';
+import { ENTITIES } from '#constants/entities.js';
+import { DataTypes, Model } from 'sequelize';
+import uuidV4 from 'uuid-random';
 
-export const Coaches = sequelize.define(
-    'Coaches',
+export class CoachesModel extends Model {}
+
+CoachesModel.init(
     {
         id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-            unique: true
+            type: DataTypes.UUID,
+            defaultValue: () => uuidV4(),
+            primaryKey: true
         },
         name: {
             type: DataTypes.STRING,
@@ -23,5 +25,9 @@ export const Coaches = sequelize.define(
             allowNull: false
         }
     },
-    { timestamps: true }
+    {
+        modelName: ENTITIES.COACHES,
+        timestamps: true,
+        sequelize
+    }
 );

@@ -1,4 +1,8 @@
-import expressApp from '#lib/express.js';
 import { createServer } from 'http';
 
-export const httpServer = createServer(expressApp);
+export class HttpServer {
+    static connect(app, port) {
+        const http = createServer(app);
+        http.listen(port, () => console.log(`connected on port: ${port}`));
+    }
+}

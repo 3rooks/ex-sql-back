@@ -6,7 +6,11 @@
         "paths": {
             "#lib/*": ["./src/lib/*"],
             "#config/*": ["./src/config/*"],
-            "#models/*": ["./src/models/*"]
+            "#models/*": ["./src/models/*"],
+            "#constants/*": ["./src/constants/*"],
+            "#repositories/*": ["./src/repositories/*"],
+            "#services/*": ["./src/services/*"],
+            "#controllers/*": ["./src/controllers/*"]
         }
     }
 }

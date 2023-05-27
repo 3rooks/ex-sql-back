@@ -1,3 +1,4 @@
+import { ctrl } from '#controllers/coach.controller.js';
 import express from 'express';
 
 const expressApp = express();
@@ -6,6 +7,7 @@ expressApp.use(express.urlencoded({ extended: true }));
 expressApp.use('/api', (req, res) => {
     return res.json({ works: 'works' });
 });
+expressApp.use('/', ctrl.hello);
 
 expressApp.use((err, req, res, next) => {
     res.err = {

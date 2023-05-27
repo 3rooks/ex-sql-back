@@ -1,14 +1,16 @@
 import { sequelize } from '#config/db.js';
-import { DataTypes } from 'sequelize';
+import { ENTITIES } from '#constants/entities.js';
+import { DataTypes, Model } from 'sequelize';
+import uuidV4 from 'uuid-random';
 
-export const Institutes = sequelize.define(
-    'Instututes',
+export class InstitutesModel extends Model {}
+
+InstitutesModel.init(
     {
         id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-            unique: true
+            type: DataTypes.UUID,
+            defaultValue: () => uuidV4(),
+            primaryKey: true
         },
         title: {
             type: DataTypes.STRING,
@@ -23,5 +25,9 @@ export const Institutes = sequelize.define(
             allowNull: false
         }
     },
-    { timestamps: true }
+    {
+        modelName: ENTITIES.INSTITUTES,
+        timestamps: true,
+        sequelize
+    }
 );

@@ -1,15 +1,16 @@
 import { sequelize } from '#config/db.js';
-import { DataTypes } from 'sequelize';
-import { Institutes } from './institutes.model.js';
+import { ENTITIES } from '#constants/entities.js';
+import { DataTypes, Model } from 'sequelize';
+import uuidV4 from 'uuid-random';
 
-export const Students = sequelize.define(
-    'Students',
+export class StudentsModel extends Model {}
+
+StudentsModel.init(
     {
         id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-            unique: true
+            type: DataTypes.UUID,
+            defaultValue: () => uuidV4(),
+            primaryKey: true
         },
         name: {
             type: DataTypes.STRING,
@@ -31,7 +32,5 @@ export const Students = sequelize.define(
             type: DataTypes.INTEGER
         }
     },
-    { timestamps: true }
+    { modelName: ENTITIES.STUDENTS, timestamps: true, sequelize }
 );
-
-Students.belongsTo(Institutes, { foreignKey: 'institute', targetKey: 'id' });
