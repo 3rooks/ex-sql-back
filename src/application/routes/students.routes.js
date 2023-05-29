@@ -1,21 +1,16 @@
 import { Router } from 'express';
+import { studentCtrl } from '../controllers/controllers.js';
 
 const studentRoutes = Router();
 
-studentRoutes.get('/carts/:cartId', () => {
-    return 'asd';
-});
+studentRoutes.get('/students', studentCtrl.getAllStudents);
 
-studentRoutes.post('/carts/:cartId/:productId', () => {
-    return 'asd';
-});
+studentRoutes.get('/students/:id', studentCtrl.getStudentById);
 
-studentRoutes.delete('/carts/:cartId/:productId', () => {
-    return 'asd';
-});
+studentRoutes.post('/students', studentCtrl.createStudent);
 
-studentRoutes.post('/carts/payments-products', () => {
-    return 'asd';
-});
+studentRoutes.patch('/students/:id', studentCtrl.updateStudent);
+
+studentRoutes.delete('/students/:id', studentCtrl.deleteStudent);
 
 export default studentRoutes;

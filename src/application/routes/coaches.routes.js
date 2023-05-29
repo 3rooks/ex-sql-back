@@ -2,20 +2,14 @@ import { Router } from 'express';
 
 const coachRoutes = Router();
 
-coachRoutes.get('/carts/:cartId', () => {
-    return 'asd';
-});
+coachRoutes.get('/coaches', () => {});
 
-coachRoutes.post('/carts/:cartId/:productId', () => {
-    return 'asd';
-});
+coachRoutes.get('/coaches/:id', () => {});
 
-coachRoutes.delete('/carts/:cartId/:productId', () => {
-    return 'asd';
-});
+coachRoutes.post('/coaches', () => {});
 
-coachRoutes.post('/carts/payments-products', () => {
-    return 'asd';
-});
+coachRoutes.patch('/coaches/:id', () => {});
+
+coachRoutes.delete('/coaches/:id', () => {});
 
 export default coachRoutes;

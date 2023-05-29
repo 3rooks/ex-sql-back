@@ -1,32 +1,32 @@
 import { ENTITIES } from '#constants/entities.js';
-import { sequelize } from '#src/modules/database/database.js';
+import { sequelize } from '#lib/sequelize.js';
 import { DataTypes, Model } from 'sequelize';
 import uuidV4 from 'uuid-random';
 
-export class InstitutesModel extends Model {}
+export class CoachesModel extends Model {}
 
-InstitutesModel.init(
+CoachesModel.init(
     {
         id: {
             type: DataTypes.UUID,
             defaultValue: () => uuidV4(),
             primaryKey: true
         },
-        title: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        address: {
+        surname: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        city: {
+        belt: {
             type: DataTypes.STRING,
             allowNull: false
         }
     },
     {
-        modelName: ENTITIES.INSTITUTES,
+        modelName: ENTITIES.COACHES,
         timestamps: true,
         sequelize
     }

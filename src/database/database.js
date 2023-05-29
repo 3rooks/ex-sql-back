@@ -1,9 +1,8 @@
-/**
- *
- */
+import { MODELS } from './models/models.js';
+
 export class Database {
-    constructor(models) {
-        this.models = models;
+    constructor() {
+        this.models = MODELS;
     }
 
     static async connect(sequelize) {
@@ -12,7 +11,7 @@ export class Database {
             // console.log('Connection to the DB successfully.');
 
             // Sincronizar los modelos con la base de datos
-            await sequelize.sync({ force: true });
+            await sequelize.sync({ force: false });
             console.log('Models synchronized with the database.');
         } catch (error) {
             console.error('Unable to connect to the database:', error);
@@ -44,8 +43,8 @@ export class Database {
      * @param {string} id
      * @returns {Promise<Model>}
      */
-    async getById(entity, id) {
-        return await this.models[entity].findByPk(id);
+    async getById(entity, id, options) {
+        return await this.models[entity].findByPk(id, options);
     }
 
     /**

@@ -1,7 +1,7 @@
 import { ENTITIES } from '#constants/entities.js';
-import { CoachesModel } from './models/coaches.model.js';
-import { InstitutesModel } from './models/institutes.model.js';
-import { StudentsModel } from './models/students.model.js';
+import { CoachesModel } from './lib/coaches.model.js';
+import { InstitutesModel } from './lib/institutes.model.js';
+import { StudentsModel } from './lib/students.model.js';
 
 export const MODELS = {
     [ENTITIES.COACHES]: CoachesModel,

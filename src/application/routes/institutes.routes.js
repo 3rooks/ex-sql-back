@@ -1,21 +1,16 @@
 import { Router } from 'express';
+import { instituteCtrl } from '../controllers/controllers.js';
 
 const instituteRoutes = Router();
 
-instituteRoutes.get('/carts/:cartId', () => {
-    return 'asd';
-});
+instituteRoutes.get('/institutes', instituteCtrl.getAllInstitutes);
 
-instituteRoutes.post('/carts/:cartId/:productId', () => {
-    return 'asd';
-});
+instituteRoutes.get('/institutes/:id', instituteCtrl.getInstituteById);
 
-instituteRoutes.delete('/carts/:cartId/:productId', () => {
-    return 'asd';
-});
+instituteRoutes.post('/institutes', instituteCtrl.createInstitute);
 
-instituteRoutes.post('/carts/payments-products', () => {
-    return 'asd';
-});
+instituteRoutes.patch('/institutes/:id', instituteCtrl.updateInstitute);
+
+instituteRoutes.delete('/institutes/:id', instituteCtrl.deleteInstitute);
 
 export default instituteRoutes;

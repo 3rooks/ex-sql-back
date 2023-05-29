@@ -1,12 +1,17 @@
 import { ENTITIES } from '#src/constants/entities.js';
 import { Database } from '#src/database/database.js';
-import { MODELS } from '#src/database/models.js';
-import { CoachRepository } from './coaches.repository.js';
-import { InstitutesRepository } from './institutes.repository.js';
-import { StudentsRepository } from './students.repository.js';
+import { CoachesRepository } from './lib/coaches.repository.js';
+import { InstitutesRepository } from './lib/institutes.repository.js';
+import { StudentsRepository } from './lib/students.repository.js';
 
-const db = new Database(MODELS);
+const db = new Database();
 
-export const CoachesRepo = new CoachRepository(db, ENTITIES.COACHES);
-export const InstitutesRepo = new InstitutesRepository(db);
-export const StudentsRepo = new StudentsRepository(db);
+const coachesRepository = new CoachesRepository(db, ENTITIES.COACHES);
+const studentsRepository = new StudentsRepository(db, ENTITIES.STUDENTS);
+const institutesRepository = new InstitutesRepository(db, ENTITIES.INSTITUTES);
+
+export const REPOSITORIES = {
+    coachesRepository,
+    institutesRepository,
+    studentsRepository
+};
