@@ -1,4 +1,6 @@
-export class InstitutesService {
+import { InstitutesRepository } from '#src/database/repositories/institutes.repository.js';
+
+class InstitutesService {
     constructor(repository) {
         this._repo = repository;
     }
@@ -23,3 +25,7 @@ export class InstitutesService {
         return await this._repo.deleteInstitute(instituteId);
     }
 }
+
+export const institutesService = new InstitutesService(
+    new InstitutesRepository()
+);

@@ -1,11 +1,9 @@
-import { MODELS } from './models/models.js';
-
 export class Database {
     constructor() {
-        this.models = MODELS;
+        this.models = {};
     }
 
-    static async connect(sequelize) {
+    async connect(sequelize) {
         try {
             // await sequelize.authenticate();
             // console.log('Connection to the DB successfully.');
@@ -24,7 +22,7 @@ export class Database {
      * @param {object} data
      * @returns {Promise<Model>}
      */
-    async create(entity, data) {
+    async __create(entity, data) {
         return await this.models[entity].create(data);
     }
 
@@ -33,7 +31,7 @@ export class Database {
      * @param {string} entity
      * @returns {Promise<Model>}
      */
-    async getAll(entity) {
+    async __getAll(entity) {
         return await this.models[entity].findAll();
     }
 
@@ -43,7 +41,7 @@ export class Database {
      * @param {string} id
      * @returns {Promise<Model>}
      */
-    async getById(entity, id, options) {
+    async __getById(entity, id, options) {
         return await this.models[entity].findByPk(id, options);
     }
 
@@ -53,7 +51,7 @@ export class Database {
      * @param {object} data
      * @returns {Promise<Model>}
      */
-    async getBy(entity, data) {
+    async __getBy(entity, data) {
         return await this.models[entity].findOne({ where: data });
     }
 
@@ -64,7 +62,7 @@ export class Database {
      * @param {object} data
      * @returns {Promise<Model>}
      */
-    async updateById(entity, id, data) {
+    async __updateById(entity, id, data) {
         return await this.models[entity].update(data, { where: { id } });
     }
 
@@ -74,7 +72,7 @@ export class Database {
      * @param {string} id
      * @returns {Promise<Model>}
      */
-    async deleteById(entity, id) {
+    async __deleteById(entity, id) {
         return await this.models[entity].destroy({ where: { id } });
     }
 }

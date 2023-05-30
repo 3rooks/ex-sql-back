@@ -5,7 +5,7 @@ import { sequelize } from './lib/sequelize.js';
 
 class Bootstrap {
     static async start() {
-        await Database.connect(sequelize);
+        await new Database().connect(sequelize);
         HttpServer.connect(application, Number(process.env.PORT));
     }
 }

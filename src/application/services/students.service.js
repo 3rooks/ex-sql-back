@@ -1,4 +1,6 @@
-export class StudentsService {
+import { StudentsRepository } from '#src/database/repositories/students.repository.js';
+
+class StudentsService {
     constructor(repository) {
         this._repo = repository;
     }
@@ -23,3 +25,5 @@ export class StudentsService {
         return await this._repo.deleteStudent(studentId);
     }
 }
+
+export const studentsService = new StudentsService(new StudentsRepository());
