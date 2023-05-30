@@ -1,6 +1,6 @@
-import { ENTITIES } from '#src/constants/entities.js';
-import { Database } from '#src/database/database.js';
-import { InstitutesModel } from '#src/database/models/institutes.model.js';
+import { ENTITIES } from '#constants/entities.js';
+import { Database } from '#database/database.js';
+import { InstitutesModel } from '#database/models/institutes.model.js';
 
 export class InstitutesRepository extends Database {
     constructor() {

@@ -1,4 +1,4 @@
-import { CoachesRepository } from '#src/database/repositories/coaches.repository.js';
+import { CoachesRepository } from '#database/repositories/coaches.repository.js';
 
 class CoachesService {
     constructor(repository) {

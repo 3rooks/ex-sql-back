@@ -1,4 +1,4 @@
-import { studentsService } from '#src/application/services/students.service.js';
+import { studentsService } from '#application/services/students.service.js';
 
 export const createStudent = async (req, res, next) => {
     const { name, surname, belt, age, instituteId } = req.body;

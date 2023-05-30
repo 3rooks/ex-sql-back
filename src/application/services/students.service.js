@@ -1,4 +1,4 @@
-import { StudentsRepository } from '#src/database/repositories/students.repository.js';
+import { StudentsRepository } from '#database/repositories/students.repository.js';
 
 class StudentsService {
     constructor(repository) {

@@ -1,6 +1,6 @@
-import { ENTITIES } from '#src/constants/entities.js';
-import { Database } from '#src/database/database.js';
-import { CoachesModel } from '#src/database/models/coaches.model.js';
+import { ENTITIES } from '#constants/entities.js';
+import { Database } from '#database/database.js';
+import { CoachesModel } from '#database/models/coaches.model.js';
 
 export class CoachesRepository extends Database {
     constructor() {

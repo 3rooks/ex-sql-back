@@ -1,7 +1,7 @@
+import coachRoutes from '#application/routes/coaches.routes.js';
+import instituteRoutes from '#application/routes/institutes.routes.js';
+import studentRoutes from '#application/routes/students.routes.js';
 import express from 'express';
-import coachRoutes from './routes/coaches.routes.js';
-import instituteRoutes from './routes/institutes.routes.js';
-import studentRoutes from './routes/students.routes.js';
 
 const application = express();
 

@@ -1,4 +1,4 @@
-import { DB_ENVIROMENT } from '#src/config/env.js';
+import { DB_ENVIROMENT } from '#config/env.js';
 import { Sequelize } from 'sequelize';
 
 // 'postgres://user:pass@localhost:5432/dbname'

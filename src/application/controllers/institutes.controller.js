@@ -1,4 +1,4 @@
-import { institutesService } from '#src/application/services/institutes.service.js';
+import { institutesService } from '#application/services/institutes.service.js';
 
 export const createInstitute = async (req, res, next) => {
     try {

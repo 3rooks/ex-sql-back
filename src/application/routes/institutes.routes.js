@@ -1,11 +1,11 @@
-import { Router } from 'express';
 import {
     createInstitute,
     deleteInstitute,
     getAllInstitutes,
     getInstituteById,
     updateInstitute
-} from '../controllers/institutes.controller.js';
+} from '#application/controllers/institutes.controller.js';
+import { Router } from 'express';
 
 const instituteRoutes = Router();
 
