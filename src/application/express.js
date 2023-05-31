@@ -2,12 +2,15 @@ import coachRoutes from '#application/routes/coaches.routes.js';
 import instituteRoutes from '#application/routes/institutes.routes.js';
 import studentRoutes from '#application/routes/students.routes.js';
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerDoc } from './middlewares/docs/swagger.js';
 
 const application = express();
 
 // middlewares
 application.use(express.json());
 application.use(express.urlencoded({ extended: true }));
+application.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 // routes
 application.use('/api/v1', coachRoutes);
