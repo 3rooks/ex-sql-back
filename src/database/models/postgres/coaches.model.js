@@ -1,5 +1,4 @@
 import { ENTITIES } from '#constants/entities.js';
-import { sequelize } from '#lib/sequelize.js';
 import { DataTypes, Model } from 'sequelize';
 import uuidV4 from 'uuid-random';
 
@@ -27,7 +26,7 @@ CoachesModel.init(
     },
     {
         modelName: ENTITIES.COACHES,
-        timestamps: true,
-        sequelize
+        timestamps: true
+        // sequelize
     }
 );

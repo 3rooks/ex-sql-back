@@ -1,10 +1,11 @@
-import application from '#application/express.js';
+import { application } from '#application/express.js';
+import '#config/env.js';
 import { httpServer } from '#config/http.js';
-import { Database } from '#database/database.js';
-import { sequelize } from '#lib/sequelize.js';
+import { db } from '#database/database.js';
 
 const bootstrap = async () => {
-    await new Database().connect(sequelize);
+    await db.setPersistence(process.env.PERSISTENCE);
+    await db.connection(process.env.MONGO_URI);
     httpServer(application, Number(process.env.PORT));
 };
 

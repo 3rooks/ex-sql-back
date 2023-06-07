@@ -1,78 +1,28 @@
-export class Database {
-    constructor() {
-        this.models = {};
+import { FactoryDAO } from './dao/factory.js';
+
+class Database {
+    constructor(factory) {
+        this.factory = factory;
+        this.database = undefined;
     }
 
-    async connect(sequelize) {
-        try {
-            // await sequelize.authenticate();
-            // console.log('Connection to the DB successfully.');
-
-            // Sincronizar los modelos con la base de datos
-            await sequelize.sync({ force: false });
-            console.log('Models synchronized with the database.');
-        } catch (error) {
-            console.error('Unable to connect to the database:', error);
-        }
+    async setPersistence(persistence) {
+        const db = await this.factory.createDAO(persistence);
+        this.database = db;
     }
 
-    /**
-     * Insert a new record in an entity
-     * @param {string} entity
-     * @param {object} data
-     * @returns {Promise<Model>}
-     */
-    async __create(entity, data) {
-        return await this.models[entity].create(data);
+    async connection(uri) {
+        await this.database.connect(uri);
     }
 
-    /**
-     * Obtain all records of an entity
-     * @param {string} entity
-     * @returns {Promise<Model>}
-     */
-    async __getAll(entity) {
-        return await this.models[entity].findAll();
+    async disconnect() {
+        await this.database.disconnect();
+        this.database = undefined;
     }
 
-    /**
-     * Obtain a record by its ID from an entity
-     * @param {string} entity
-     * @param {string} id
-     * @returns {Promise<Model>}
-     */
-    async __getById(entity, id, options) {
-        return await this.models[entity].findByPk(id, options);
-    }
-
-    /**
-     * Obtain a record by entity-specific criteria
-     * @param {string} entity
-     * @param {object} data
-     * @returns {Promise<Model>}
-     */
-    async __getBy(entity, data) {
-        return await this.models[entity].findOne({ where: data });
-    }
-
-    /**
-     * Update a record by its ID in an entity
-     * @param {string} entity
-     * @param {string} id
-     * @param {object} data
-     * @returns {Promise<Model>}
-     */
-    async __updateById(entity, id, data) {
-        return await this.models[entity].update(data, { where: { id } });
-    }
-
-    /**
-     * Delete a record by its entity ID
-     * @param {string} entity
-     * @param {string} id
-     * @returns {Promise<Model>}
-     */
-    async __deleteById(entity, id) {
-        return await this.models[entity].destroy({ where: { id } });
+    getInstance() {
+        return this.database;
     }
 }
+
+export const db = new Database(new FactoryDAO());

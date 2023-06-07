@@ -1,5 +1,4 @@
 import { ENTITIES } from '#constants/entities.js';
-import { sequelize } from '#lib/sequelize.js';
 import { DataTypes, Model } from 'sequelize';
 import uuidV4 from 'uuid-random';
 import { InstitutesModel } from './institutes.model.js';
@@ -34,7 +33,11 @@ StudentsModel.init(
             allowNull: false
         }
     },
-    { modelName: ENTITIES.STUDENTS, timestamps: true, sequelize }
+    {
+        modelName: ENTITIES.STUDENTS,
+        timestamps: true
+        //  sequelize
+    }
 );
 
 StudentsModel.belongsTo(InstitutesModel, {

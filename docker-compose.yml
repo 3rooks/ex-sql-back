@@ -1,30 +1,56 @@
 version: '3.7'
 services:
-    postgresql:
-        container_name: postgresql_dev
-        image: postgres:alpine
+    mongodb:
+        image: mongo:latest
+        container_name: mongodb
         restart: always
         environment:
-            POSTGRES_USER: ${POSTGRESQL_USER:-root}
-            POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD:-admin}
-            POSTGRES_DB: mydbsql
+            MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER:-root}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD:-admin}
         ports:
-            - ${POSTGRESQL_PORT:-5432}:5432
+            - ${MONGODB_PORT:-27017}:27017
         volumes:
-            - postgresql_data:/var/lib/postgresql/data
-    pgadmin:
-        container_name: pgadmin4_dev
-        image: dpage/pgadmin4:latest
+            - mongo:/data/db
+    mongoexpress:
+        image: mongo-express:latest
+        container_name: mongo_express
         restart: always
         environment:
-            PGADMIN_DEFAULT_EMAIL: admin@admin.com
-            PGADMIN_DEFAULT_PASSWORD: root
+            ME_CONFIG_BASICAUTH_USERNAME: root
+            ME_CONFIG_BASICAUTH_PASSWORD: admin
+            ME_CONFIG_MONGODB_SERVER: mongodb
+            ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGODB_USER:-root}
+            ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGODB_PASSWORD:-admin}
         ports:
-            - '8082:80'
+            - 8081:8081
         depends_on:
-            - postgresql
-        volumes:
-            - pgadmin_data:/var/lib/pgadmin
+            - mongodb
+    # postgresql:
+    #     container_name: postgresql_dev
+    #     image: postgres:alpine
+    #     restart: always
+    #     environment:
+    #         POSTGRES_USER: ${POSTGRESQL_USER:-root}
+    #         POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD:-admin}
+    #         POSTGRES_DB: mydbsql
+    #     ports:
+    #         - ${POSTGRESQL_PORT:-5432}:5432
+    #     volumes:
+    #         - postgresql_data:/var/lib/postgresql/data
+    # pgadmin:
+    #     container_name: pgadmin4_dev
+    #     image: dpage/pgadmin4:latest
+    #     restart: always
+    #     environment:
+    #         PGADMIN_DEFAULT_EMAIL: admin@admin.com
+    #         PGADMIN_DEFAULT_PASSWORD: root
+    #     ports:
+    #         - '8082:80'
+    #     depends_on:
+    #         - postgresql
+    #     volumes:
+    #         - pgadmin_data:/var/lib/pgadmin
 volumes:
-    postgresql_data:
-    pgadmin_data:
+    mongo:
+    # postgresql_data:
+    # pgadmin_data:

@@ -5,7 +5,7 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerDoc } from './middlewares/docs/swagger.js';
 
-const application = express();
+export const application = express();
 
 // middlewares
 application.use(express.json());
@@ -28,5 +28,3 @@ application.use((err, req, res, next) => {
 application.use((err, req, res, next) => {
     return res.status(500).send(err.message);
 });
-
-export default application;

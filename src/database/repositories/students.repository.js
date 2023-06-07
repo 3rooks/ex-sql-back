@@ -1,12 +1,8 @@
 import { ENTITIES } from '#constants/entities.js';
-import { Database } from '#database/database.js';
-import { StudentsModel } from '#database/models/students.model.js';
 
-export class StudentsRepository extends Database {
+export class StudentsRepository {
     constructor() {
-        super();
         this._entity = ENTITIES.STUDENTS;
-        this.models[ENTITIES.STUDENTS] = StudentsModel;
     }
 
     async createStudent(student) {

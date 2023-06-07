@@ -1,3 +1,4 @@
+import { db } from '#database/database.js';
 import { CoachesRepository } from '#database/repositories/coaches.repository.js';
 
 class CoachesService {
@@ -6,4 +7,4 @@ class CoachesService {
     }
 }
 
-export const coachesService = new CoachesService(new CoachesRepository());
+export const coachesService = new CoachesService(new CoachesRepository(db));
