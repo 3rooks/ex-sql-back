@@ -9,7 +9,7 @@ export const moderators = {
                     'application/json': {
                         schema: {
                             type: 'object',
-                            $ref: '#/components/requestBodies/PostMovie'
+                            $ref: '#/components/schemas/Moderator'
                         }
                     }
                 }
@@ -43,6 +43,36 @@ export const moderators = {
                         'application/json': {
                             type: 'object',
                             $ref: '#/components/responseErrorBodies/MovieConflict'
+                        }
+                    }
+                }
+            }
+        }
+    },
+    '/api/v1/moderators/login': {
+        post: {
+            summary: 'Loging moderator',
+            tags: ['Moderators'],
+            requestBody: {
+                required: true,
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'object',
+                            $ref: '#/components/schemas/Moderator'
+                        }
+                    }
+                }
+            },
+            responses: {
+                200: {
+                    description: 'Login succesfully',
+                    content: {
+                        'application/json': {
+                            schema: {
+                                type: 'object',
+                                $ref: '#/components/responseBodies/ModAuth'
+                            }
                         }
                     }
                 }

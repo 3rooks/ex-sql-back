@@ -28,6 +28,6 @@ InstitutesModel.init(
     {
         modelName: ENTITIES.INSTITUTES,
         timestamps: true,
-        sequelize: sequelize.getInstance()
+        sequelize: sequelize.instance
     }
 );

@@ -25,6 +25,6 @@ ModeratorsModel.init(
     {
         modelName: ENTITIES.MODERATORS,
         timestamps: true,
-        sequelize: sequelize.getInstance()
+        sequelize: sequelize.instance
     }
 );

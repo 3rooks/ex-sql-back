@@ -28,6 +28,6 @@ CoachesModel.init(
     {
         modelName: ENTITIES.COACHES,
         timestamps: true,
-        sequelize: sequelize.getInstance()
+        sequelize: sequelize.instance
     }
 );

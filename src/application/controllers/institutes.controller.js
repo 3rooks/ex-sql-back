@@ -1,56 +1,62 @@
-import { institutes } from '#modules/services.module.js';
+import { InstitutesService } from '#application/services/institutes.service.js';
 
-export const createInstitute = async (req, res, next) => {
-    try {
-        const instituteData = req.body;
-        const createdInstitute = await institutes.createInstitute(
-            instituteData
-        );
-        res.status(201).json(createdInstitute);
-    } catch (error) {
-        next(error);
+export class InstitutesController {
+    constructor() {
+        this._service = new InstitutesService();
     }
-};
 
-export const getAllInstitutes = async (req, res, next) => {
-    try {
-        const institutess = await institutes.getAllInstitutes();
-        res.json(institutess);
-    } catch (error) {
-        next(error);
-    }
-};
+    createInstitute = async (req, res, next) => {
+        try {
+            const instituteData = req.body;
+            const createdInstitute = await this._service.createInstitute(
+                instituteData
+            );
+            res.status(201).json(createdInstitute);
+        } catch (error) {
+            next(error);
+        }
+    };
 
-export const getInstituteById = async (req, res, next) => {
-    try {
-        const instituteId = req.params.id;
-        const institute = await institutes.getInstituteById(instituteId);
-        res.json(institute);
-    } catch (error) {
-        next(error);
-    }
-};
+    getAllInstitutes = async (req, res, next) => {
+        try {
+            const institutess = await this._service.getAllInstitutes();
+            res.json(institutess);
+        } catch (error) {
+            next(error);
+        }
+    };
 
-export const updateInstitute = async (req, res, next) => {
-    try {
-        const instituteId = req.params.id;
-        const updatedInstituteData = req.body;
-        const updatedInstitute = await institutes.updateInstitute(
-            instituteId,
-            updatedInstituteData
-        );
-        res.json(updatedInstitute);
-    } catch (error) {
-        next(error);
-    }
-};
+    getInstituteById = async (req, res, next) => {
+        try {
+            const instituteId = req.params.id;
+            const institute = await this._service.getInstituteById(instituteId);
+            res.json(institute);
+        } catch (error) {
+            next(error);
+        }
+    };
 
-export const deleteInstitute = async (req, res, next) => {
-    try {
-        const instituteId = req.params.id;
-        await institutes.deleteInstitute(instituteId);
-        res.sendStatus(204);
-    } catch (error) {
-        next(error);
-    }
-};
+    updateInstitute = async (req, res, next) => {
+        try {
+            const instituteId = req.params.id;
+            const updatedInstituteData = req.body;
+            const updatedInstitute = await this._service.updateInstitute(
+                instituteId,
+                updatedInstituteData
+            );
+            res.json(updatedInstitute);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    deleteInstitute = async (req, res, next) => {
+        try {
+            const instituteId = req.params.id;
+            await this._service.deleteInstitute(instituteId);
+            res.sendStatus(204);
+        } catch (error) {
+            next(error);
+        }
+    };
+}

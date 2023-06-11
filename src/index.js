@@ -1,10 +1,11 @@
 import '#config/env.js';
 import { application } from '#application/express.js';
 import { httpServer } from '#config/http.js';
-import { db } from '#database/database.js';
+import { sequelize } from '#database/dao/sequelize.js';
+import { Database } from '#database/database.js';
 
 const bootstrap = async () => {
-    await db.connect();
+    await Database.connect(sequelize);
     httpServer(application, Number(process.env.PORT));
 };
 

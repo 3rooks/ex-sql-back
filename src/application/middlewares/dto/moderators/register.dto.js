@@ -1,6 +1,6 @@
 import ajv from '#lib/ajv.js';
 import { Type } from '@sinclair/typebox';
-import { emailDTOSchema, passwordDTOSchema } from './dto.js';
+import { emailDTOSchema, passwordDTOSchema } from '../dto.js';
 
 export const moderatorDTOSchema = Type.Object(
     {
@@ -17,7 +17,7 @@ export const moderatorDTOSchema = Type.Object(
 
 const validateSchema = ajv.compile(moderatorDTOSchema);
 
-export const registerModeratorDTO = (req, res, next) => {
+export const moderatorDTO = (req, res, next) => {
     const isDTOValid = validateSchema(req.body);
 
     if (!isDTOValid)

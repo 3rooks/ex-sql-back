@@ -3,23 +3,23 @@ export class StudentsService {
         this._repo = repository;
     }
 
-    async createStudent(student) {
+    createStudent = async (student) => {
         return await this._repo.createStudent(student);
-    }
+    };
 
-    async getAllStudents() {
+    getAllStudents = async () => {
         return await this._repo.getAllStudents();
-    }
+    };
 
-    async getStudentById(studentId) {
+    getStudentById = async (studentId) => {
         return await this._repo.getStudentById(studentId);
-    }
+    };
 
-    async updateStudent(studentId, student) {
+    updateStudent = async (studentId, student) => {
         return await this._repo.updateStudent(studentId, student);
-    }
+    };
 
-    async deleteStudent(studentId) {
+    deleteStudent = async (studentId) => {
         return await this._repo.deleteStudent(studentId);
-    }
+    };
 }

@@ -1,22 +1,15 @@
-import {
-    createInstitute,
-    deleteInstitute,
-    getAllInstitutes,
-    getInstituteById,
-    updateInstitute
-} from '#application/controllers/institutes.controller.js';
 import { Router } from 'express';
 
 const instituteRoutes = Router();
 
-instituteRoutes.get('/institutes', getAllInstitutes);
+instituteRoutes.get('/institutes');
 
-instituteRoutes.get('/institutes/:id', getInstituteById);
+instituteRoutes.get('/institutes/:id');
 
-instituteRoutes.post('/institutes', createInstitute);
+instituteRoutes.post('/institutes');
 
-instituteRoutes.patch('/institutes/:id', updateInstitute);
+instituteRoutes.patch('/institutes/:id');
 
-instituteRoutes.delete('/institutes/:id', deleteInstitute);
+instituteRoutes.delete('/institutes/:id');
 
 export default instituteRoutes;

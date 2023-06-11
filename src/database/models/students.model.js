@@ -37,7 +37,7 @@ StudentsModel.init(
     {
         modelName: ENTITIES.STUDENTS,
         timestamps: true,
-        sequelize: sequelize.getInstance()
+        sequelize: sequelize.instance
     }
 );
 

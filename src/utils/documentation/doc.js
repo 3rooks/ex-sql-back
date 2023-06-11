@@ -1,9 +1,9 @@
-import { moderatorDTOSchema } from '#application/middlewares/dto/moderator.dto.js';
+import { moderatorDTOSchema } from '#application/middlewares/dto/moderators/register.dto.js';
 import { moderators } from './moderators.js';
 
 export const DOCUMENTATION = {
     openapi: '3.0.0',
-    info: { title: 'Endpoints Documentation', version: '1.0.0' },
+    info: { title: 'Tkw documentation', version: '1.0.0' },
     paths: {
         _Moderators: 'moderators',
         ...moderators,
@@ -22,7 +22,6 @@ export const DOCUMENTATION = {
                     year: { type: 'integer' }
                 }
             },
-
             Moderator: moderatorDTOSchema
         },
         securitySchemes: {
@@ -33,7 +32,12 @@ export const DOCUMENTATION = {
             }
         },
         requestBodies: {},
-        responseBodies: {},
+        responseBodies: {
+            ModAuth: {
+                type: 'object',
+                example: { token: '[JWT]' }
+            }
+        },
         responseErrorBodies: {
             Unauthorized: {
                 type: 'object',

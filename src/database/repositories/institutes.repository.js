@@ -1,8 +1,9 @@
 import { ENTITIES } from '#constants/entities.js';
+import { database } from '#database/database.js';
 
 export class InstitutesRepository {
-    constructor(database) {
-        this.db = database;
+    constructor() {
+        this._db = database;
         this._entity = ENTITIES.INSTITUTES;
     }
 

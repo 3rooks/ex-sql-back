@@ -1,41 +1,37 @@
 import { Sequelize } from 'sequelize';
 
-class SequelizeInstance {
+class SequelizeFactory {
     constructor(uri) {
-        this._instance = null;
-        this._createInstance(uri);
+        this.instance = new Sequelize(String(uri));
+        this.models = {};
     }
 
-    _createInstance(uri) {
-        this._instance = new Sequelize(String(uri));
+    defineModel(name, attributes) {
+        const model = this.instance.define(name, attributes);
+        this.models[name] = model;
+        return model;
     }
 
-    async connection() {
-        try {
-            // await sequelize.authenticate();
-            // console.log('Connection to the DB successfully.');
-
-            // Sincronizar los modelos con la base de datos
-
-            if (!this._instance) throw new Error('NO_INSTANCE');
-
-            await this._instance.sync({ force: false });
-            console.log('Models synchronized with the database.');
-        } catch (error) {
-            throw new Error(`CAN_NOT_CONNECT_TO_DATABASE: ${error.message}`);
-        }
+    getModel(name) {
+        return this.models[name];
     }
 
-    async disconnect() {
-        await this._instance.close();
+    async auth() {
+        await this.instance.authenticate();
+        console.log('Connection to the database successfully.');
     }
 
-    getInstance() {
-        if (!this._instance) throw new Error('NO_INSTANCE');
-        return this._instance;
+    async sync() {
+        await this.instance.sync({ force: false });
+        console.log('Models synchronized with the database.');
+    }
+
+    async close() {
+        await this.instance.close();
+        console.log('Database Disconnected.');
     }
 }
 
-// 'postgres://user:pass@localhost:5432/dbname'
+export const sequelize = new SequelizeFactory(process.env.POSTGRES_URI);
 
-export const sequelize = new SequelizeInstance(process.env.POSTGRES_URI);
+// 'postgres://user:pass@localhost:5432/dbname'

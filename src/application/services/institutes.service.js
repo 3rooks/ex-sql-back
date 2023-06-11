@@ -3,23 +3,23 @@ export class InstitutesService {
         this._repo = repository;
     }
 
-    async createInstitute(institute) {
+    createInstitute = async (institute) => {
         return await this._repo.createInstitute(institute);
-    }
+    };
 
-    async getAllInstitutes() {
+    getAllInstitutes = async () => {
         return await this._repo.getAllInstitutes();
-    }
+    };
 
-    async getInstituteById(instituteId) {
+    getInstituteById = async (instituteId) => {
         return await this._repo.getInstituteById(instituteId);
-    }
+    };
 
-    async updateInstitute(instituteId, institute) {
+    updateInstitute = async (instituteId, institute) => {
         return await this._repo.updateInstitute(instituteId, institute);
-    }
+    };
 
-    async deleteInstitute(instituteId) {
+    deleteInstitute = async (instituteId) => {
         return await this._repo.deleteInstitute(instituteId);
-    }
+    };
 }
