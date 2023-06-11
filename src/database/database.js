@@ -1,28 +1,52 @@
-import { FactoryDAO } from './dao/factory.js';
+import { ENTITIES } from '#constants/entities.js';
+import { sequelize } from '#database/dao/sequelize.js';
+import { CoachesModel } from './models/coaches.model.js';
+import { InstitutesModel } from './models/institutes.model.js';
+import { ModeratorsModel } from './models/moderators.model.js';
+import { StudentsModel } from './models/students.model.js';
 
 class Database {
-    constructor(factory) {
-        this.factory = factory;
-        this.database = undefined;
+    constructor(sequelize) {
+        this._sequelize = sequelize;
+        this._models = {
+            [ENTITIES.COACHES]: CoachesModel,
+            [ENTITIES.STUDENTS]: StudentsModel,
+            [ENTITIES.INSTITUTES]: InstitutesModel,
+            [ENTITIES.MODERATORS]: ModeratorsModel
+        };
     }
 
-    async setPersistence(persistence) {
-        const db = await this.factory.createDAO(persistence);
-        this.database = db;
-    }
-
-    async connection(uri) {
-        await this.database.connect(uri);
+    async connect() {
+        await this._sequelize.connection();
     }
 
     async disconnect() {
-        await this.database.disconnect();
-        this.database = undefined;
+        await this._sequelize.disconnect();
     }
 
-    getInstance() {
-        return this.database;
+    async getBy(entity, data) {
+        return await this._models[entity].findOne({ where: data });
+    }
+
+    async getAll(entity, search) {
+        return await this._models[entity].findAll(search);
+    }
+
+    async getById(entity, id, options) {
+        return await this._models[entity].findByPk(id, options);
+    }
+
+    async create(entity, data) {
+        return await this._models[entity].create(data);
+    }
+
+    async update(entity, id, data) {
+        return await this._models[entity].update(data, { where: { id } });
+    }
+
+    async delete(entity, id) {
+        return await this._models[entity].destroy({ where: { id } });
     }
 }
 
-export const db = new Database(new FactoryDAO());
+export const db = new Database(sequelize);

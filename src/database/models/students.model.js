@@ -1,4 +1,5 @@
 import { ENTITIES } from '#constants/entities.js';
+import { sequelize } from '#database/dao/sequelize.js';
 import { DataTypes, Model } from 'sequelize';
 import uuidV4 from 'uuid-random';
 import { InstitutesModel } from './institutes.model.js';
@@ -35,8 +36,8 @@ StudentsModel.init(
     },
     {
         modelName: ENTITIES.STUDENTS,
-        timestamps: true
-        //  sequelize
+        timestamps: true,
+        sequelize: sequelize.getInstance()
     }
 );
 

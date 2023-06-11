@@ -1,9 +1,9 @@
-import { studentsService } from '#application/services/students.service.js';
+import { students } from '#modules/services.module.js';
 
 export const createStudent = async (req, res, next) => {
     const { name, surname, belt, age, instituteId } = req.body;
     try {
-        const student = await studentsService.createStudent({
+        const student = await students.createStudent({
             name,
             surname,
             belt,
@@ -18,8 +18,8 @@ export const createStudent = async (req, res, next) => {
 
 export const getAllStudents = async (req, res, next) => {
     try {
-        const students = await studentsService.getAllStudents();
-        res.status(200).json(students);
+        const studentss = await students.getAllStudents();
+        res.status(200).json(studentss);
     } catch (error) {
         next(error);
     }
@@ -28,7 +28,7 @@ export const getAllStudents = async (req, res, next) => {
 export const getStudentById = async (req, res, next) => {
     const { id } = req.params;
     try {
-        const student = await studentsService.getStudentById(id);
+        const student = await students.getStudentById(id);
         if (student) {
             res.status(200).json(student);
         } else {
@@ -43,7 +43,7 @@ export const updateStudent = async (req, res, next) => {
     const { id } = req.params;
     const { name, surname, belt, age, instituteId } = req.body;
     try {
-        const student = await studentsService.updateStudent(id);
+        const student = await students.updateStudent(id);
         if (student) {
             await student.update({
                 name,
@@ -64,7 +64,7 @@ export const updateStudent = async (req, res, next) => {
 export const deleteStudent = async (req, res, next) => {
     const { id } = req.params;
     try {
-        const student = await studentsService.deleteStudent(id);
+        const student = await students.deleteStudent(id);
         if (student) {
             await student.destroy();
             res.status(200).json({

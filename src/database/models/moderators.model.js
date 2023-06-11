@@ -1,32 +1,30 @@
 import { ENTITIES } from '#constants/entities.js';
+import { sequelize } from '#database/dao/sequelize.js';
 import { DataTypes, Model } from 'sequelize';
 import uuidV4 from 'uuid-random';
 
-export class InstitutesModel extends Model {}
+export class ModeratorsModel extends Model {}
 
-InstitutesModel.init(
+ModeratorsModel.init(
     {
         id: {
             type: DataTypes.UUID,
             defaultValue: () => uuidV4(),
             primaryKey: true
         },
-        title: {
+        email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
-        address: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        city: {
+        password: {
             type: DataTypes.STRING,
             allowNull: false
         }
     },
     {
-        modelName: ENTITIES.INSTITUTES,
-        timestamps: true
-        // sequelize
+        modelName: ENTITIES.MODERATORS,
+        timestamps: true,
+        sequelize: sequelize.getInstance()
     }
 );

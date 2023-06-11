@@ -10,7 +10,7 @@ const options = {
             version: '1.0.0'
         }
     },
-    apis: [`${DOCS_PATH}/**/*.yaml`]
+    apis: [`${DOCS_PATH}/**/*.js`]
 };
 
 export const swaggerDoc = swaggerJSDoc(options);
