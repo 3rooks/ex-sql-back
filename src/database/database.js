@@ -1,8 +1,9 @@
 import { ENTITIES } from '#constants/entities.js';
-import { CoachesModel } from './models/coaches.model.js';
-import { InstitutesModel } from './models/institutes.model.js';
-import { ModeratorsModel } from './models/moderators.model.js';
-import { StudentsModel } from './models/students.model.js';
+import { FactoryDAO } from './dao/factory.dao.js';
+import { CoachesModel } from './models/postgres/coaches.model.js';
+import { InstitutesModel } from './models/postgres/institutes.model.js';
+import { ModeratorsModel } from './models/postgres/moderators.model.js';
+import { StudentsModel } from './models/postgres/students.model.js';
 
 export class Database {
     constructor() {
@@ -12,6 +13,12 @@ export class Database {
             [ENTITIES.INSTITUTES]: InstitutesModel,
             [ENTITIES.MODERATORS]: ModeratorsModel
         };
+    }
+
+    static con = async() => {
+        const idk = await FactoryDAO.setPersistence('mongo')
+    
+        return idk
     }
 
     static connect = async (sequelize) => {
