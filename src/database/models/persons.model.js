@@ -31,6 +31,6 @@ PersonsModel.init(
     },
     {
         sequelize: sequelize.instance,
-        modelName: ENTITIES.STUDENTS
+        modelName: ENTITIES.PERSONS
     }
 );

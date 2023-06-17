@@ -39,6 +39,6 @@ GUPHistoryModel.init(
     },
     {
         sequelize: sequelize.instance,
-        modelName: ENTITIES.STUDENTS
+        modelName: ENTITIES.GUP
     }
 );

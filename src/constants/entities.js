@@ -1,10 +1,9 @@
 export const ENTITIES = {
-    COACHES: 'Coaches',
-    STUDENTS: 'Students',
-    INSTITUTES: 'Institutes',
     MODERATORS: 'Moderators',
-    REFEREES: 'Referees',
     PERSONS: 'Persons',
+    SCHOOLS: 'Schools',
+    SPECILIZATIONS: 'Specializations',
+    SCHOOLHISTORYS: 'SchoolsHistory',
     GUP: 'Gup',
     DAN: 'Dan'
 };

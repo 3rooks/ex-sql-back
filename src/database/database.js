@@ -1,16 +1,22 @@
 import { ENTITIES } from '#constants/entities.js';
-import { CoachesModel } from './models/coaches.model.js';
+import { DANHistoryModel } from './models/dan-history.model.js';
+import { GUPHistoryModel } from './models/gup-history.model.js';
 import { ModeratorsModel } from './models/moderators.model.js';
+import { PersonsModel } from './models/persons.model.js';
+import { SchoolHistoryModel } from './models/school-history.js';
 import { SchoolsModel } from './models/schools.model.js';
-import { StudentsModel } from './models/students.model.js';
+import { SpecializationsModel } from './models/specialization.model.js';
 
 export class Database {
     constructor() {
         this._models = {
-            [ENTITIES.COACHES]: CoachesModel,
-            [ENTITIES.STUDENTS]: StudentsModel,
-            [ENTITIES.INSTITUTES]: SchoolsModel,
-            [ENTITIES.MODERATORS]: ModeratorsModel
+            [ENTITIES.MODERATORS]: ModeratorsModel,
+            [ENTITIES.PERSONS]: PersonsModel,
+            [ENTITIES.SCHOOLS]: SchoolsModel,
+            [ENTITIES.SPECILIZATIONS]: SpecializationsModel,
+            [ENTITIES.SCHOOLHISTORYS]: SchoolHistoryModel,
+            [ENTITIES.DAN]: DANHistoryModel,
+            [ENTITIES.GUP]: GUPHistoryModel
         };
     }
 

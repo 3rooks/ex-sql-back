@@ -4,7 +4,7 @@ import { database } from '#database/database.js';
 export class InstitutesRepository {
     constructor() {
         this._db = database;
-        this._entity = ENTITIES.INSTITUTES;
+        this._entity = ENTITIES.SCHOOLS;
     }
 
     async createInstitute(institute) {

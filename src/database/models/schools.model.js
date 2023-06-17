@@ -38,6 +38,6 @@ SchoolsModel.init(
     },
     {
         sequelize: sequelize.instance,
-        modelName: ENTITIES.INSTITUTES
+        modelName: ENTITIES.SCHOOLS
     }
 );

@@ -2,9 +2,9 @@ import { ENTITIES } from '#constants/entities.js';
 import { sequelize } from '#database/dao/sequelize.js';
 import { DataTypes, Model } from 'sequelize';
 
-export class SpecializationModel extends Model {}
+export class SpecializationsModel extends Model {}
 
-SpecializationModel.init(
+SpecializationsModel.init(
     {
         id: {
             type: DataTypes.UUID,
@@ -46,6 +46,6 @@ SpecializationModel.init(
     },
     {
         sequelize: sequelize.instance,
-        modelName: ENTITIES.INSTITUTES
+        modelName: ENTITIES.SPECILIZATIONS
     }
 );
