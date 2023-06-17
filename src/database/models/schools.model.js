@@ -1,18 +1,21 @@
 import { ENTITIES } from '#constants/entities.js';
 import { sequelize } from '#database/dao/sequelize.js';
 import { DataTypes, Model } from 'sequelize';
-import uuidV4 from 'uuid-random';
 
-export class InstitutesModel extends Model {}
+export class SchoolsModel extends Model {}
 
-InstitutesModel.init(
+SchoolsModel.init(
     {
         id: {
             type: DataTypes.UUID,
-            defaultValue: () => uuidV4(),
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        title: {
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        director: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -20,14 +23,21 @@ InstitutesModel.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        city: {
+        locality: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        province: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        legalEntity: {
             type: DataTypes.STRING,
             allowNull: false
         }
     },
     {
-        modelName: ENTITIES.INSTITUTES,
-        timestamps: true,
-        sequelize: sequelize.instance
+        sequelize: sequelize.instance,
+        modelName: ENTITIES.INSTITUTES
     }
 );

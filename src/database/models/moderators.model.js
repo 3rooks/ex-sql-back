@@ -1,7 +1,7 @@
 import { ENTITIES } from '#constants/entities.js';
 import { sequelize } from '#database/dao/sequelize.js';
 import { DataTypes, Model } from 'sequelize';
-import uuidV4 from 'uuid-random';
+import uuid from 'uuid-random';
 
 export class ModeratorsModel extends Model {}
 
@@ -9,7 +9,7 @@ ModeratorsModel.init(
     {
         id: {
             type: DataTypes.UUID,
-            defaultValue: () => uuidV4(),
+            defaultValue: () => uuid(),
             primaryKey: true
         },
         email: {
@@ -23,8 +23,7 @@ ModeratorsModel.init(
         }
     },
     {
-        modelName: ENTITIES.MODERATORS,
-        timestamps: true,
-        sequelize: sequelize.instance
+        sequelize: sequelize.instance,
+        modelName: ENTITIES.MODERATORS
     }
 );
