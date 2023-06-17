@@ -3,7 +3,7 @@ export const ENTITIES = {
     PERSONS: 'Persons',
     SCHOOLS: 'Schools',
     SPECILIZATIONS: 'Specializations',
-    SCHOOLHISTORYS: 'SchoolsHistory',
+    SCHOOLHISTORYS: 'SchoolsHistories',
     GUP: 'Gup',
     DAN: 'Dan'
 };
