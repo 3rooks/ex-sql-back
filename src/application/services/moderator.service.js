@@ -1,24 +1,27 @@
-import { ModeratorsRepository } from '#database/repositories/moderators.repository.js';
+import { ENTITIES } from '#constants/entities.js';
+import { db } from '#database/database.js';
 import { compareHash, createHash } from '#lib/bcript.js';
 import { signAsync } from '#lib/jwt.js';
 
+const { MODERATORS } = ENTITIES;
+
 export class ModeratorsService {
     constructor() {
-        this._repository = new ModeratorsRepository();
+        this.repository = db.repositories;
     }
 
     createMod = async (mod) => {
-        return await this._repository.createModerator(mod);
+        return await this.repository[MODERATORS].createModerator(mod);
     };
 
     createModerator = async (moderator) => {
         const { email, password } = moderator;
 
-        const exist = await this._repository.getModeratorByEmail(email);
+        const exist = await this.repository.getModeratorByEmail(email);
 
         if (exist) return { exist: true, data: exist };
 
-        const data = await this._repository.createModerator({
+        const data = await this.repository.createModerator({
             email,
             password: await createHash(password)
         });
@@ -29,7 +32,7 @@ export class ModeratorsService {
     loginModerator = async (moderator) => {
         const { email, password } = moderator;
 
-        const exist = await this._repository.getModeratorByEmail(email);
+        const exist = await this.repository.getModeratorByEmail(email);
 
         if (!exist) return {};
 
@@ -43,14 +46,14 @@ export class ModeratorsService {
     };
 
     deleteModerator = async (moderatorId) => {
-        return await this._repository.deleteModerator(moderatorId);
+        return await this.repository.deleteModerator(moderatorId);
     };
 
     getModeratorById = async (moderatorId) => {
-        return await this._repository.getModeratorById(moderatorId);
+        return await this.repository.getModeratorById(moderatorId);
     };
 
     getModByEmail = async (email) => {
-        return await this._repository.getModeratorByEmail(email);
+        return await this.repository.getModeratorByEmail(email);
     };
 }

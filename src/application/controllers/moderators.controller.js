@@ -1,4 +1,4 @@
-import { ModeratorsService } from '#application/services/moderators.service.js';
+import { ModeratorsService } from '#application/services/moderator.service.js';
 import { compareHash, createHash } from '#lib/bcript.js';
 import { signAsync } from '#lib/jwt.js';
 

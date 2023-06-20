@@ -1,9 +1,7 @@
 export const ENTITIES = {
-    MODERATORS: 'Moderators',
+    GUP: 'Gups',
+    DAN: 'Dans',
     PERSONS: 'Persons',
     SCHOOLS: 'Schools',
-    SPECILIZATIONS: 'Specializations',
-    SCHOOLHISTORYS: 'SchoolsHistories',
-    GUP: 'Gup',
-    DAN: 'Dan'
+    MODERATORS: 'Moderators'
 };
