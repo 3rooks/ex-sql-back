@@ -4,18 +4,18 @@ import { signAsync } from '#lib/jwt.js';
 
 export class ModeratorsController {
     constructor() {
-        this._service = new ModeratorsService();
+        this.service = new ModeratorsService();
     }
 
     register = async (req, res, next) => {
         try {
             const { email, password } = req.body;
 
-            const exist = await this._service.getModByEmail(email);
+            const exist = await this.service.getModByEmail(email);
 
             if (exist) return res.status(409).json(exist);
 
-            const created = await this._service.createMod({
+            const created = await this.service.createMod({
                 email,
                 password: await createHash(password)
             });
@@ -30,7 +30,7 @@ export class ModeratorsController {
         try {
             const { email, password } = req.body;
 
-            const exist = await this._service.getModByEmail(email);
+            const exist = await this.service.getModByEmail(email);
             if (!exist) return res.status(401).json({ error: 'unauthorized' });
 
             const chackPass = await compareHash(password, exist);

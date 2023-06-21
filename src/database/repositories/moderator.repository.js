@@ -7,6 +7,10 @@ export class ModeratorRepository {
         this.model = model(ENTITIES.MODERATORS, MODERATOR_SCHEMA);
     }
 
+    getBy = async () => {
+        return this.model.findOne({});
+    };
+
     createModerator = async (moderator) => {
         return await this.model.create(moderator);
     };
