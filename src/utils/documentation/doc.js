@@ -1,4 +1,4 @@
-import { moderatorDTOSchema } from '#application/middlewares/dto/moderators/register.dto.js';
+import { moderatorDTOSchema } from '#application/middlewares/dto/schemas/moderator.js';
 import { moderators } from './moderators.js';
 
 export const DOCUMENTATION = {

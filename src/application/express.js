@@ -1,6 +1,3 @@
-import coachRoutes from '#application/routes/coaches.routes.js';
-import instituteRoutes from '#application/routes/institutes.routes.js';
-import studentRoutes from '#application/routes/students.routes.js';
 import { DOCUMENTATION } from '#utils/documentation/doc.js';
 import cors from 'cors';
 import express from 'express';
@@ -16,9 +13,9 @@ application.use(express.urlencoded({ extended: false }));
 application.use('/docs', swaggerUi.serve, swaggerUi.setup(DOCUMENTATION));
 
 // routes
-application.use('/api/v1', coachRoutes);
-application.use('/api/v1', studentRoutes);
-application.use('/api/v1', instituteRoutes);
+// application.use('/api/v1');
+// application.use('/api/v1');
+// application.use('/api/v1');
 application.use('/api/v1', moderatorRoutes);
 
 // handle error

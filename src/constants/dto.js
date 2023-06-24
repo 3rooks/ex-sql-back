@@ -38,6 +38,24 @@ export const emailDTOSchema = Type.String({
     }
 });
 
+export const roleDTOSchema = Type.Union(
+    [
+        Type.Literal('admin', {
+            errorMessage: {
+                value: '${0#} Role must be a valid role',
+                type: '${0#} Role must be a valid role'
+            }
+        }),
+        Type.Literal('super'),
+        Type.Literal('user')
+    ],
+    {
+        errorMessage: {
+            value: '${0#} Role must be a valid role'
+        }
+    }
+);
+
 export const passwordDTOSchema = Type.String({
     format: 'password',
     minLength: 8,

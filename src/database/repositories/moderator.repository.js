@@ -7,12 +7,12 @@ export class ModeratorRepository {
         this.model = model(ENTITIES.MODERATORS, MODERATOR_SCHEMA);
     }
 
-    getBy = async () => {
-        return this.model.findOne({});
+    create = async (moderator) => {
+        return await this.model.create(moderator);
     };
 
-    createModerator = async (moderator) => {
-        return await this.model.create(moderator);
+    getBy = async (search) => {
+        return await this.model.findOne(search).lean().exec();
     };
 
     getAllModerators = async () => {
@@ -20,7 +20,7 @@ export class ModeratorRepository {
     };
 
     getModeratorByEmail = async (email) => {
-        return await this.model.findOne({ email }).exec();
+        return await this.model.findOne({ email });
     };
 
     getModeratorById = async (moderatorId) => {

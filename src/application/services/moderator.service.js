@@ -1,33 +1,20 @@
 import { ModeratorRepository } from '#database/repositories/moderator.repository.js';
-import { compareHash, createHash } from '#lib/bcript.js';
-import { signAsync } from '#lib/jwt.js';
+import { createHash } from '#lib/bcript.js';
 
-export class ModeratorsService {
+export class ModeratorService {
     constructor() {
         this.repository = new ModeratorRepository();
     }
 
     createModerator = async (moderator) => {
-        return await this.repository.createModerator({
+        const mod = await this.repository.create({
             ...moderator,
             password: await createHash(moderator.password)
         });
-    };
 
-    loginModerator = async (moderator) => {
-        const { email, password } = moderator;
+        const { role, ...rest } = mod.toObject();
 
-        const exist = await this.repository.getModeratorByEmail(email);
-
-        if (!exist) return {};
-
-        const checkPass = await compareHash(password, exist);
-        if (!checkPass) return {};
-
-        const payload = { id: exist.id };
-        const token = await signAsync(payload);
-
-        return token;
+        return rest;
     };
 
     deleteModerator = async (moderatorId) => {
@@ -38,7 +25,16 @@ export class ModeratorsService {
         return await this.repository.getModeratorById(moderatorId);
     };
 
-    getModByEmail = async (email) => {
-        return await this.repository.getModeratorByEmail(email);
+    getModByEmail = async (moderator) => {
+        const { email } = moderator;
+
+        const mod = await this.repository.getBy({ email });
+        console.log('MODERATOR', mod);
+
+        if (!mod) return false;
+
+        const { role, ...rest } = mod;
+
+        return rest;
     };
 }

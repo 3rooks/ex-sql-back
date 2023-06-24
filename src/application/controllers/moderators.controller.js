@@ -1,24 +1,19 @@
-import { ModeratorsService } from '#application/services/moderator.service.js';
-import { compareHash, createHash } from '#lib/bcript.js';
+import { ModeratorService } from '#application/services/moderator.service.js';
+import { compareHash } from '#lib/bcript.js';
 import { signAsync } from '#lib/jwt.js';
 
-export class ModeratorsController {
+export class ModeratorController {
     constructor() {
-        this.service = new ModeratorsService();
+        this.service = new ModeratorService();
     }
 
     register = async (req, res, next) => {
         try {
-            const { email, password } = req.body;
-
-            const exist = await this.service.getModByEmail(email);
+            const exist = await this.service.getModByEmail(req.body);
 
             if (exist) return res.status(409).json(exist);
 
-            const created = await this.service.createMod({
-                email,
-                password: await createHash(password)
-            });
+            const created = await this.service.createModerator(req.body);
 
             return res.status(201).json(created);
         } catch (error) {

@@ -1,11 +1,12 @@
-import { randomUUID } from 'crypto';
+import { ROLES } from '#constants/roles.js';
 import { Schema } from 'mongoose';
+import uuid from 'uuid-random';
 
 export const MODERATOR_SCHEMA = new Schema(
     {
         _id: {
-            type: Schema.Types.UUID,
-            default: () => randomUUID(),
+            type: String,
+            default: () => uuid(),
             unique: true
         },
         email: {
@@ -17,18 +18,13 @@ export const MODERATOR_SCHEMA = new Schema(
             require: true
         },
         role: {
-            super: {
-                type: Boolean,
-                default: false
-            },
-            admin: {
-                type: Boolean,
-                default: false
-            },
-            user: {
-                type: Boolean,
-                default: true
-            }
+            type: String,
+            enum: ROLES,
+            require: true
+        },
+        isActive: {
+            type: Boolean,
+            default: true
         }
     },
     {
