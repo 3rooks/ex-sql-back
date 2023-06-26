@@ -1,4 +1,4 @@
-import { moderatorDTOSchema } from '#application/middlewares/dto/schemas/moderator.js';
+import { registerModSchema } from '#application/middlewares/dto/schemas/moderator.js';
 import { moderators } from './moderators.js';
 
 export const DOCUMENTATION = {
@@ -22,7 +22,7 @@ export const DOCUMENTATION = {
                     year: { type: 'integer' }
                 }
             },
-            Moderator: moderatorDTOSchema
+            Moderator: registerModSchema
         },
         securitySchemes: {
             bearerAuth: {

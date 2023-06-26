@@ -26,15 +26,6 @@ export class ModeratorService {
     };
 
     getModByEmail = async (moderator) => {
-        const { email } = moderator;
-
-        const mod = await this.repository.getBy({ email });
-        console.log('MODERATOR', mod);
-
-        if (!mod) return false;
-
-        const { role, ...rest } = mod;
-
-        return rest;
+        return await this.repository.getModeratorByEmail(moderator.email);
     };
 }

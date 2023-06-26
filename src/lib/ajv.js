@@ -11,4 +11,9 @@ ajvFormats(ajv, ['uuid', 'email']);
 ajv.addFormat('password', passwordRegex);
 ajvErrors(ajv);
 
-export default ajv;
+export const compareSchemas = (schema, body) => {
+    const validateFn = ajv.compile(schema);
+    const isValid = validateFn(body);
+
+    return { isValid, validateFn };
+};

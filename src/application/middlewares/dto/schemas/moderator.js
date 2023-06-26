@@ -1,16 +1,11 @@
-import {
-    emailDTOSchema,
-    passwordDTOSchema,
-    roleDTOSchema
-} from '#constants/dto.js';
-import ajv from '#lib/ajv.js';
+import { emailType, passwordType, roleType } from '#constants/dto.js';
 import { Type } from '@sinclair/typebox';
 
-export const moderatorDTOSchema = Type.Object(
+export const registerModSchema = Type.Object(
     {
-        email: emailDTOSchema,
-        password: passwordDTOSchema,
-        role: roleDTOSchema
+        email: emailType,
+        password: passwordType,
+        role: roleType
     },
     {
         additionalProperties: false,
@@ -20,4 +15,15 @@ export const moderatorDTOSchema = Type.Object(
     }
 );
 
-export const valModSchema = ajv.compile(moderatorDTOSchema);
+export const loginModSchema = Type.Object(
+    {
+        email: emailType,
+        password: passwordType
+    },
+    {
+        additionalProperties: false,
+        errorMessage: {
+            additionalProperties: 'Object format is invalid'
+        }
+    }
+);

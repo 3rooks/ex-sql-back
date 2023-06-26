@@ -1,23 +1,30 @@
-import { valModSchema } from './schemas/moderator.js';
+import { compareSchemas } from '#lib/ajv.js';
+import { loginModSchema, registerModSchema } from './schemas/moderator.js';
 
 export class ModeratorDTO {
-    login = (req, res, next) => {
-        const isDTOValid = valModSchema(req.body);
+    register = (req, res, next) => {
+        const { isValid, validateFn } = compareSchemas(
+            registerModSchema,
+            req.body
+        );
 
-        if (!isDTOValid)
+        if (!isValid)
             return res.status(400).json({
-                errors: valModSchema.errors.map((error) => error.message)
+                errors: validateFn.errors.map((error) => error.message)
             });
 
         next();
     };
 
-    register = (req, res, next) => {
-        const isDTOValid = valModSchema(req.body);
+    login = (req, res, next) => {
+        const { isValid, validateFn } = compareSchemas(
+            loginModSchema,
+            req.body
+        );
 
-        if (!isDTOValid)
+        if (!isValid)
             return res.status(400).json({
-                errors: valModSchema.errors.map((error) => error.message)
+                errors: validateFn.errors.map((error) => error.message)
             });
 
         next();

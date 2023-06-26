@@ -23,16 +23,14 @@ export class ModeratorController {
 
     login = async (req, res, next) => {
         try {
-            const { email, password } = req.body;
-
-            const exist = await this.service.getModByEmail(email);
+            const exist = await this.service.getModByEmail(req.body);
             if (!exist) return res.status(401).json({ error: 'unauthorized' });
 
-            const chackPass = await compareHash(password, exist);
+            const chackPass = await compareHash(req.body, exist);
             if (!chackPass)
                 return res.status(401).json({ error: 'unauthorized' });
 
-            const payload = { id: exist.id };
+            const payload = { id: exist._id };
             const token = await signAsync(payload);
 
             return res.status(200).json({ token });

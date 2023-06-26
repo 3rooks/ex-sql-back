@@ -1,4 +1,5 @@
 import { Type } from '@sinclair/typebox';
+import { ROLES } from './roles.js';
 
 export const idDTOSchema = Type.String({
     format: 'uuid',
@@ -30,7 +31,7 @@ export const usernameDTOSchema = Type.String({
     }
 });
 
-export const emailDTOSchema = Type.String({
+export const emailType = Type.String({
     format: 'email',
     errorMessage: {
         type: '${0#} should be a string',
@@ -38,25 +39,26 @@ export const emailDTOSchema = Type.String({
     }
 });
 
-export const roleDTOSchema = Type.Union(
+export const roleType = Type.Union(
     [
-        Type.Literal('admin', {
-            errorMessage: {
-                value: '${0#} Role must be a valid role',
-                type: '${0#} Role must be a valid role'
-            }
+        Type.Literal(ROLES[0], {
+            errorMessage: '${0#} does not match the first role'
         }),
-        Type.Literal('super'),
-        Type.Literal('user')
+        Type.Literal(ROLES[1], {
+            errorMessage: '${0#} does not match the second role'
+        }),
+        Type.Literal(ROLES[2], {
+            errorMessage: '${0#} does not match the thirth role'
+        })
     ],
     {
         errorMessage: {
-            value: '${0#} Role must be a valid role'
+            anyOf: '${0#} must be a valid role'
         }
     }
 );
 
-export const passwordDTOSchema = Type.String({
+export const passwordType = Type.String({
     format: 'password',
     minLength: 8,
     maxLength: 20,
