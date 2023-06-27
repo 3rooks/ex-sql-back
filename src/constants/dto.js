@@ -42,13 +42,22 @@ export const emailType = Type.String({
 export const roleType = Type.Union(
     [
         Type.Literal(ROLES[0], {
-            errorMessage: '${0#} does not match the first role'
+            errorMessage: {
+                type: '${0#} must be string',
+                const: '${0#} does not match the first role'
+            }
         }),
         Type.Literal(ROLES[1], {
-            errorMessage: '${0#} does not match the second role'
+            errorMessage: {
+                type: '${0#} must be string',
+                const: '${0#} does not match the second role'
+            }
         }),
         Type.Literal(ROLES[2], {
-            errorMessage: '${0#} does not match the thirth role'
+            errorMessage: {
+                type: '${0#} must be string',
+                const: '${0#} does not match the thirth role'
+            }
         })
     ],
     {
