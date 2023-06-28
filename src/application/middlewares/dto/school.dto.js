@@ -1,13 +1,10 @@
 import { compareSchemas } from '#lib/ajv.js';
-import {
-    loginModSchema,
-    registerModSchema
-} from './schemas/moderator.schema.dto.js';
+import { schoolSchemaDTO } from './schemas/school.schema.dto.js';
 
-export class ModeratorDTO {
-    register = (req, res, next) => {
+export class SchoolDTO {
+    create = (req, res, next) => {
         const { isValid, validateFn } = compareSchemas(
-            registerModSchema,
+            schoolSchemaDTO,
             req.body
         );
 
@@ -19,9 +16,9 @@ export class ModeratorDTO {
         next();
     };
 
-    login = (req, res, next) => {
+    update = (req, res, next) => {
         const { isValid, validateFn } = compareSchemas(
-            loginModSchema,
+            schoolSchemaDTO,
             req.body
         );
 
@@ -32,10 +29,4 @@ export class ModeratorDTO {
 
         next();
     };
-
-    updatePassword = (req, res, next) => {};
-
-    updateEmail = (req, res, next) => {};
-
-    delete = (req, res, next) => {};
 }

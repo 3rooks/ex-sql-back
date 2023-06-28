@@ -24,7 +24,7 @@ export const SCHOOL_SCHEMA = new Schema(
             type: String,
             require: true
         },
-        juridicalPerson: {
+        legalEntity: {
             type: String,
             require: true
         }

@@ -1,36 +1,6 @@
 import { Type } from '@sinclair/typebox';
 import { ROLES } from './roles.js';
 
-export const idDTOSchema = Type.String({
-    format: 'uuid',
-    errorMessage: {
-        type: '${0#} must be a string',
-        format: '${0#} should be a uuidv4'
-    }
-});
-
-export const imageDTOSchema = Type.String({
-    minLength: 10,
-    maxLength: 1000,
-    errorMessage: {
-        type: '${0#} should be a string',
-        format: '${0#} should be a string',
-        minLength: '${0#} must have at least 100 letters',
-        maxLength: '${0#} must have a maximum of 1000 letters'
-    }
-});
-
-export const usernameDTOSchema = Type.String({
-    minLength: 2,
-    maxLength: 20,
-    errorMessage: {
-        type: '${0#} must be a string',
-        format: '${0#} should be a string',
-        minLength: '${0#} must have at least 2 letters',
-        maxLength: '${0#} must have a maximum of 20 letters'
-    }
-});
-
 export const emailType = Type.String({
     format: 'email',
     errorMessage: {
@@ -79,134 +49,28 @@ export const passwordType = Type.String({
     }
 });
 
-export const titleDTOSchema = Type.String({
-    minLength: 5,
+export const nameType = Type.String({
+    minLength: 2,
     maxLength: 50,
     errorMessage: {
         type: '${0#} must be a string',
-        format: '${0#} should be a string',
-        minLength: '${0#} must have at least 5 letters',
-        maxLength: '${0#} must have a maximum of 50 letters'
-    }
-});
-
-export const originalTitleDTOSchema = Type.String({
-    minLength: 2,
-    maxLength: 50,
-    errorMessage: {
-        type: '${0#} should be a string',
-        format: '${0#} should be a string',
         minLength: '${0#} must have at least 2 letters',
         maxLength: '${0#} must have a maximum of 50 letters'
     }
 });
 
-export const originalTitleRomanisedDTOSchema = Type.String({
-    minLength: 5,
-    maxLength: 50,
+export const dateType = Type.Date({
     errorMessage: {
-        type: '${0#} should be a string',
-        format: '${0#} should be a string',
-        minLength: '${0#} must have at least 5 letters',
-        maxLength: '${0#} must have a maximum of 50 letters'
+        type: '${0#} must be a date'
     }
 });
 
-export const descriptionDTOSchema = Type.String({
-    minLength: 10,
-    maxLength: 1000,
-    errorMessage: {
-        type: '${0#} should be a string',
-        format: '${0#} should be a string',
-        minLength: '${0#} must have at least 100 letters',
-        maxLength: '${0#} must have a maximum of 1000 letters'
-    }
-});
-
-export const directorDTOSchema = Type.String({
-    minLength: 2,
-    maxLength: 100,
-    errorMessage: {
-        type: '${0#} should be a string',
-        format: '${0#} should be a string',
-        minLength: '${0#} must have at least 2 letters',
-        maxLength: '${0#} must have a maximum of 100 letters'
-    }
-});
-
-export const producerDTOSchema = Type.String({
-    minLength: 2,
-    maxLength: 100,
-    errorMessage: {
-        type: '${0#} should be a string',
-        format: '${0#} should be a string',
-        minLength: '${0#} must have at least 2 letters',
-        maxLength: '${0#} must have a maximum of 100 letters'
-    }
-});
-
-export const releaseYearDTOSchema = Type.Number({
-    minimum: 1700,
-    maximum: 2050,
+export const dniType = Type.Number({
+    minimum: 1000000,
+    maximum: 99999999,
     errorMessage: {
         type: '${0#} should be a number',
-        format: '${0#} should be a YYYY',
-        minimum: '${0#} should be above 1700',
-        maximum: '${0#} should be below 2050'
-    }
-});
-
-export const minDurationDTOSchema = Type.Number({
-    minimum: 60,
-    maximum: 180,
-    errorMessage: {
-        type: '${0#} should be a number',
-        format: '${0#} should be a hh--MM--ss',
-        minimum: '${0#} should be above 60 minutes',
-        maximum: '${0#} should be below 180 minutes'
-    }
-});
-
-export const infoDTOSchema = Type.String({
-    minLength: 10,
-    maxLength: 1000,
-    errorMessage: {
-        type: '${0#} should be a string',
-        format: '${0#} should be a string',
-        minLength: '${0#} must have at least 100 letters',
-        maxLength: '${0#} must have a maximum of 1000 letters'
-    }
-});
-
-export const priceDTOSchema = Type.Number({
-    minimum: 100,
-    maximum: 500,
-    errorMessage: {
-        type: '${0#} should be a number',
-        format: '${0#} should be a number',
-        minimum: '${0#} should be above 100',
-        maximum: '${0#} should be below 500'
-    }
-});
-
-export const paymentPriceDTOSchema = Type.Number({
-    minimum: 1,
-    maximum: 1000000000,
-    errorMessage: {
-        type: '${0#} should be a number',
-        format: '${0#} should be a number',
-        minimum: '${0#} should be above 2',
-        maximum: '${0#} should be below 1000000000'
-    }
-});
-
-export const pmDTOSchema = Type.String({
-    minLength: 1,
-    maxLength: 27,
-    errorMessage: {
-        type: '${0#} must be a string',
-        format: '${0#} should be a string',
-        minLength: '${0#} must have at least 1 letters',
-        maxLength: '${0#} must have a maximum of 27 letters'
+        minimum: '${0#} should be above 1000000',
+        maximum: '${0#} should be below 99999999'
     }
 });
