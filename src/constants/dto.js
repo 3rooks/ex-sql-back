@@ -1,6 +1,14 @@
 import { Type } from '@sinclair/typebox';
 import { ROLES } from './roles.js';
 
+export const idType = Type.String({
+    format: 'uuid',
+    errorMessage: {
+        type: '${0#} must be a string',
+        format: '${0#} should be a uuidV4'
+    }
+});
+
 export const emailType = Type.String({
     format: 'email',
     errorMessage: {

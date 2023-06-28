@@ -13,6 +13,11 @@ export class SchoolRoutes {
     init = () => {
         this.route.post('/schools', this.dto.create, this.ctrl.create);
 
-        this.route.patch('/schools', this.dto.update, this.ctrl.update);
+        this.route.patch(
+            '/schools/:schoolId',
+            this.dto.params,
+            this.dto.update,
+            this.ctrl.update
+        );
     };
 }

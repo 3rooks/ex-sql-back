@@ -1,5 +1,7 @@
 import { registerModSchema } from '#application/middlewares/dto/schemas/moderator.schema.dto.js';
+import { schoolSchemaDTO } from '#application/middlewares/dto/schemas/school.schema.dto.js';
 import { moderators } from './moderators.js';
+import { schools } from './schools.js';
 
 export const DOCUMENTATION = {
     openapi: '3.0.0',
@@ -8,21 +10,13 @@ export const DOCUMENTATION = {
         _Moderators: 'moderators',
         ...moderators,
         _Persons: 'persons',
-        _Coaches: 'coaches',
-        _Referees: 'referees',
-        _Institutes: 'institutes'
+        _Schools: 'schools',
+        ...schools
     },
     components: {
         schemas: {
-            Movie: {
-                type: 'object',
-                properties: {
-                    title: { type: 'string' },
-                    director: { type: 'string' },
-                    year: { type: 'integer' }
-                }
-            },
-            Moderator: registerModSchema
+            Moderator: registerModSchema,
+            School: schoolSchemaDTO
         },
         securitySchemes: {
             bearerAuth: {
@@ -31,7 +25,9 @@ export const DOCUMENTATION = {
                 bearerFormat: 'JWT'
             }
         },
-        requestBodies: {},
+        requestBodies: {
+            schoolSchemaDTO
+        },
         responseBodies: {
             ModAuth: {
                 type: 'object',
@@ -87,5 +83,5 @@ export const DOCUMENTATION = {
             }
         }
     },
-    tags: ['Moderators', 'Persons', 'Referees', 'Institutes']
+    tags: ['Moderators', 'Persons', 'Schools']
 };

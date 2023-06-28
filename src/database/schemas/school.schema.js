@@ -1,16 +1,17 @@
-import { randomUUID } from 'crypto';
 import { Schema } from 'mongoose';
+import uuid from 'uuid-random';
 
 export const SCHOOL_SCHEMA = new Schema(
     {
         _id: {
-            type: Schema.Types.UUID,
-            default: () => randomUUID(),
+            type: String,
+            default: () => uuid(),
             unique: true
         },
         name: {
             type: String,
-            require: true
+            require: true,
+            unique: true
         },
         director: {
             type: String,

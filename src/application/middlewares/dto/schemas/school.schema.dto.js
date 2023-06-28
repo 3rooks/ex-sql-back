@@ -1,4 +1,4 @@
-import { nameType } from '#constants/dto.js';
+import { idType, nameType } from '#constants/dto.js';
 import { Type } from '@sinclair/typebox';
 
 export const schoolSchemaDTO = Type.Object(
@@ -8,6 +8,18 @@ export const schoolSchemaDTO = Type.Object(
         locality: nameType,
         province: nameType,
         legalEntity: nameType
+    },
+    {
+        additionalProperties: false,
+        errorMessage: {
+            additionalProperties: 'Object format is invalid'
+        }
+    }
+);
+
+export const schoolIdSchemaDTO = Type.Object(
+    {
+        schoolId: idType
     },
     {
         additionalProperties: false,
