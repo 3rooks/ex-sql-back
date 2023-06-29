@@ -1,33 +1,32 @@
 export const moderators = {
-    '/api/v1/moderators/register': {
+    '/api/v1/mods/register': {
         post: {
-            summary: 'Create an moderator',
+            summary: 'Register a moderator',
             tags: ['Moderators'],
             requestBody: {
                 required: true,
                 content: {
                     'application/json': {
                         schema: {
-                            type: 'object',
-                            $ref: '#/components/schemas/Moderator'
+                            $ref: '#/components/schemas/RegisterModerator'
                         }
                     }
                 }
             },
             responses: {
                 201: {
-                    description: 'post movie',
+                    description: 'Moderator created',
                     content: {
                         'application/json': {
                             schema: {
                                 type: 'object',
-                                $ref: '#/components/responseBodies/PostMovie'
+                                $ref: '#/components/responseBodies/ModeratorCreated'
                             }
                         }
                     }
                 },
                 400: {
-                    description: 'Errors (Bad request)',
+                    description: 'Invalid fields',
                     content: {
                         'application/json': {
                             schema: {
@@ -38,28 +37,28 @@ export const moderators = {
                     }
                 },
                 409: {
-                    description: 'movie conflic',
+                    description: 'Moderator already exist',
                     content: {
                         'application/json': {
-                            type: 'object',
-                            $ref: '#/components/responseErrorBodies/MovieConflict'
+                            schema: {
+                                $ref: '#/components/responseBodies/ModeratorConflict'
+                            }
                         }
                     }
                 }
             }
         }
     },
-    '/api/v1/moderators/login': {
+    '/api/v1/mods/login': {
         post: {
-            summary: 'Loging moderator',
+            summary: 'Login as a moderator',
             tags: ['Moderators'],
             requestBody: {
                 required: true,
                 content: {
                     'application/json': {
                         schema: {
-                            type: 'object',
-                            $ref: '#/components/schemas/Moderator'
+                            $ref: '#/components/schemas/LoginModerator'
                         }
                     }
                 }
@@ -71,100 +70,89 @@ export const moderators = {
                         'application/json': {
                             schema: {
                                 type: 'object',
-                                $ref: '#/components/responseBodies/ModAuth'
+                                $ref: '#/components/responseBodies/AuthToken'
                             }
+                        }
+                    }
+                },
+                400: {
+                    description: 'Invalid fields',
+                    content: {
+                        'application/json': {
+                            schema: {
+                                type: 'object',
+                                $ref: '#/components/responseErrorBodies/WrongFields'
+                            }
+                        }
+                    }
+                },
+                401: {
+                    description: 'Unauthorized moderator',
+                    content: {
+                        'application/json': {
+                            type: 'object',
+                            $ref: '#/components/responseErrorBodies/Unauthorized'
                         }
                     }
                 }
             }
         }
     },
-    '/api/v1/moderators/{moderatorId}': {
+    '/api/v1/auth/mods': {
         get: {
-            summary: 'Return movie by ID',
+            summary: 'Get moderator',
             tags: ['Moderators'],
-            parameters: [
-                {
-                    name: 'movieId',
-                    in: 'path',
-                    required: true,
-                    description: 'ID movie (uuidV4)',
-                    type: 'string'
-                }
-            ],
+            security: [{ bearerAuth: [] }],
             responses: {
                 200: {
-                    description: 'get movie by id',
+                    description: 'Moderator info',
                     content: {
                         'application/json': {
                             schema: {
-                                type: 'object',
-                                $ref: '#/components/responseBodies/GetMovieBy'
+                                $ref: '#/components/responseBodies/Moderator'
                             }
                         }
                     }
                 },
-                400: {
-                    description: 'Invalid Params Fields - Bad Request',
+                401: {
+                    description: 'Unauthorized moderator',
                     content: {
                         'application/json': {
-                            schema: {
-                                type: 'object',
-                                $ref: '#/components/responseErrorBodies/WrongFields'
-                            }
-                        }
-                    }
-                },
-                404: {
-                    description: 'Movie not found',
-                    content: {
-                        'application/json': {
-                            schema: {
-                                type: 'object',
-                                $ref: '#/components/responseErrorBodies/MovieNotFound'
-                            }
+                            $ref: '#/components/responseErrorBodies/Unauthorized'
                         }
                     }
                 }
             }
-        },
-        put: {
-            summary: 'put movie',
+        }
+    },
+    '/api/v1/auth/update-email': {
+        patch: {
+            summary: 'Update moderator email',
             tags: ['Moderators'],
-            parameters: [
-                {
-                    name: 'movieId',
-                    in: 'path',
-                    required: true,
-                    description: 'ID movie (uuidV4)',
-                    type: 'string'
-                }
-            ],
+            security: [{ bearerAuth: [] }],
             requestBody: {
                 required: true,
                 content: {
                     'application/json': {
                         schema: {
-                            type: 'object',
-                            $ref: '#/components/requestBodies/PostMovie'
+                            $ref: '#/components/schemas/UpdateModeratorEmail'
                         }
                     }
                 }
             },
             responses: {
                 200: {
-                    description: 'put movie',
+                    description: 'Moderator updated',
                     content: {
                         'application/json': {
                             schema: {
-                                type: 'object',
-                                $ref: '#/components/responseBodies/DeleteMovie'
+                                $ref: '#/components/responseBodies/Moderator'
                             }
                         }
                     }
                 },
                 400: {
-                    description: 'Errors (Bad request)',
+                    description: 'Invalid fields',
                     content: {
                         'application/json': {
                             schema: {
@@ -174,54 +162,46 @@ export const moderators = {
                         }
                     }
                 },
-                404: {
-                    description: 'character | movie not found',
-                    content: {
-                        'application/json': {
-                            schema: {
-                                type: 'object',
-                                $ref: '#/components/responseErrorBodies/BothNotFound'
-                            }
-                        }
-                    }
-                },
-                409: {
-                    description: 'character conflict',
+                401: {
+                    description: 'Unauthorized moderator',
                     content: {
                         'application/json': {
                             type: 'object',
-                            $ref: '#/components/responseErrorBodies/CharacterConflict'
+                            $ref: '#/components/responseErrorBodies/Unauthorized'
                         }
                     }
                 }
             }
-        },
-        delete: {
-            summary: 'delete movie',
+        }
+    },
+    '/api/v1/auth/update-password': {
+        patch: {
+            summary: 'Update moderator password',
             tags: ['Moderators'],
-            parameters: [
-                {
-                    name: 'movieId',
-                    in: 'path',
-                    required: true,
-                    description: 'ID movie (uuidV4)',
-                    type: 'string'
+            security: [{ bearerAuth: [] }],
+            requestBody: {
+                required: true,
+                content: {
+                    'application/json': {
+                        schema: {
+                            $ref: '#/components/schemas/UpdateModeratorPassword'
+                        }
+                    }
                 }
-            ],
+            },
             responses: {
                 200: {
-                    description: 'delete movie',
+                    description: 'Moderator updated',
                     content: {
                         'application/json': {
                             schema: {
-                                type: 'object',
-                                $ref: '#/components/responseBodies/DeleteMovie'
+                                $ref: '#/components/responseBodies/Moderator'
                             }
                         }
                     }
                 },
                 400: {
-                    description: 'Errors (Bad request)',
+                    description: 'Invalid fields',
                     content: {
                         'application/json': {
                             schema: {
@@ -231,14 +211,12 @@ export const moderators = {
                         }
                     }
                 },
-                404: {
-                    description: 'Movie not found',
+                401: {
+                    description: 'Unauthorized moderator',
                     content: {
                         'application/json': {
-                            schema: {
-                                type: 'object',
-                                $ref: '#/components/responseErrorBodies/MovieNotFound'
-                            }
+                            type: 'object',
+                            $ref: '#/components/responseErrorBodies/Unauthorized'
                         }
                     }
                 }

@@ -7,25 +7,29 @@ export class ModeratorService {
     }
 
     createModerator = async (moderator) => {
-        const mod = await this.repository.create({
+        return await this.repository.create({
             ...moderator,
             password: await createHash(moderator.password)
         });
-
-        const { role, ...rest } = mod.toObject();
-
-        return rest;
     };
 
-    deleteModerator = async (moderatorId) => {
-        return await this.repository.deleteModerator(moderatorId);
+    updateEmail = async (moderatorId, moderator) => {
+        return await this.repository.updateModerator(moderatorId, {
+            email: moderator.email
+        });
+    };
+
+    updatePassword = async (moderatorId, moderator) => {
+        return await this.repository.updateModerator(moderatorId, {
+            password: moderator.newPassword
+        });
     };
 
     getModeratorById = async (moderatorId) => {
         return await this.repository.getModeratorById(moderatorId);
     };
 
-    getModByEmail = async (moderator) => {
+    getModeratorByEmail = async (moderator) => {
         return await this.repository.getModeratorByEmail(moderator.email);
     };
 }

@@ -20,16 +20,17 @@ export class ModeratorRepository {
     };
 
     getModeratorByEmail = async (email) => {
-        return await this.model.findOne({ email });
+        return await this.model.findOne({ email }).lean().exec();
     };
 
     getModeratorById = async (moderatorId) => {
-        return await this.model.findById(moderatorId).exec();
+        return await this.model.findById(moderatorId).lean().exec();
     };
 
     updateModerator = async (moderatorId, moderator) => {
         return await this.model
-            .findByIdAndUpdate(moderatorId, moderator)
+            .findByIdAndUpdate(moderatorId, moderator, { new: true })
+            .lean()
             .exec();
     };
 

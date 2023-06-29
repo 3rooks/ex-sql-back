@@ -1,7 +1,7 @@
 import { emailType, passwordType, roleType } from '#constants/dto.js';
 import { Type } from '@sinclair/typebox';
 
-export const registerModSchema = Type.Object(
+export const registerSchemaDTO = Type.Object(
     {
         email: emailType,
         password: passwordType,
@@ -10,12 +10,12 @@ export const registerModSchema = Type.Object(
     {
         additionalProperties: false,
         errorMessage: {
-            additionalProperties: 'Object format is invalid'
+            additionalProperties: 'Schema format is invalid'
         }
     }
 );
 
-export const loginModSchema = Type.Object(
+export const loginSchemaDTO = Type.Object(
     {
         email: emailType,
         password: passwordType
@@ -23,7 +23,32 @@ export const loginModSchema = Type.Object(
     {
         additionalProperties: false,
         errorMessage: {
-            additionalProperties: 'Object format is invalid'
+            additionalProperties: 'Schema format is invalid'
+        }
+    }
+);
+
+export const updateEmailSchemaDTO = Type.Object(
+    {
+        email: emailType
+    },
+    {
+        additionalProperties: false,
+        errorMessage: {
+            additionalProperties: 'Schema format is invalid'
+        }
+    }
+);
+
+export const updatePasswordSchemaDTO = Type.Object(
+    {
+        oldPassword: passwordType,
+        newPassword: passwordType
+    },
+    {
+        additionalProperties: false,
+        errorMessage: {
+            additionalProperties: 'Schema format is invalid'
         }
     }
 );

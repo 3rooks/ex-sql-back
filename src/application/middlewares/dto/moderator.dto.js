@@ -1,13 +1,15 @@
-import { compareSchemas } from '#lib/ajv.js';
 import {
-    loginModSchema,
-    registerModSchema
-} from './schemas/moderator.schema.dto.js';
+    loginSchemaDTO,
+    registerSchemaDTO,
+    updateEmailSchemaDTO,
+    updatePasswordSchemaDTO
+} from '#application/middlewares/dto/schemas/moderator.schema.dto.js';
+import { compareSchemas } from '#lib/ajv.js';
 
 export class ModeratorDTO {
     register = (req, res, next) => {
         const { isValid, validateFn } = compareSchemas(
-            registerModSchema,
+            registerSchemaDTO,
             req.body
         );
 
@@ -21,7 +23,7 @@ export class ModeratorDTO {
 
     login = (req, res, next) => {
         const { isValid, validateFn } = compareSchemas(
-            loginModSchema,
+            loginSchemaDTO,
             req.body
         );
 
@@ -33,9 +35,31 @@ export class ModeratorDTO {
         next();
     };
 
-    updatePassword = (req, res, next) => {};
+    updateEmail = (req, res, next) => {
+        const { isValid, validateFn } = compareSchemas(
+            updateEmailSchemaDTO,
+            req.body
+        );
 
-    updateEmail = (req, res, next) => {};
+        if (!isValid)
+            return res.status(400).json({
+                errors: validateFn.errors.map((error) => error.message)
+            });
 
-    delete = (req, res, next) => {};
+        next();
+    };
+
+    updatePassword = (req, res, next) => {
+        const { isValid, validateFn } = compareSchemas(
+            updatePasswordSchemaDTO,
+            req.body
+        );
+
+        if (!isValid)
+            return res.status(400).json({
+                errors: validateFn.errors.map((error) => error.message)
+            });
+
+        next();
+    };
 }

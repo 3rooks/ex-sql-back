@@ -1,4 +1,9 @@
-import { registerModSchema } from '#application/middlewares/dto/schemas/moderator.schema.dto.js';
+import {
+    loginSchemaDTO,
+    registerSchemaDTO,
+    updateEmailSchemaDTO,
+    updatePasswordSchemaDTO
+} from '#application/middlewares/dto/schemas/moderator.schema.dto.js';
 import { schoolSchemaDTO } from '#application/middlewares/dto/schemas/school.schema.dto.js';
 import { moderators } from './moderators.js';
 import { schools } from './schools.js';
@@ -14,10 +19,6 @@ export const DOCUMENTATION = {
         ...schools
     },
     components: {
-        schemas: {
-            Moderator: registerModSchema,
-            School: schoolSchemaDTO
-        },
         securitySchemes: {
             bearerAuth: {
                 type: 'http',
@@ -25,61 +26,51 @@ export const DOCUMENTATION = {
                 bearerFormat: 'JWT'
             }
         },
-        requestBodies: {
-            schoolSchemaDTO
+        schemas: {
+            RegisterModerator: registerSchemaDTO,
+            LoginModerator: loginSchemaDTO,
+            UpdateModeratorEmail: updateEmailSchemaDTO,
+            UpdateModeratorPassword: updatePasswordSchemaDTO,
+            CreateSchool: schoolSchemaDTO
         },
         responseBodies: {
-            ModAuth: {
+            AuthToken: {
                 type: 'object',
-                example: { token: '[JWT]' }
+                example: { token: 'JWT' }
+            },
+            Moderator: {
+                example: {
+                    _id: 'string',
+                    email: 'string',
+                    password: 'stringst',
+                    role: 'string',
+                    isActive: 'boolean',
+                    createdAt: 'Date',
+                    updatedAt: 'Date'
+                }
+            },
+            ModeratorCreated: {
+                example: {
+                    results: 'MODERATOR_CREATED'
+                }
+            },
+            ModeratorUpdated: {
+                example: {
+                    results: 'moderator updated'
+                }
+            },
+            ModeratorConflict: {
+                example: {
+                    results: 'MODERATOR_EXISTS'
+                }
             }
         },
         responseErrorBodies: {
             Unauthorized: {
-                type: 'object',
-                example: { errors: 'user unauthorized' }
+                example: { errors: 'unauthorized' }
             },
             WrongFields: {
-                type: 'object',
-                example: { errors: ['Wrong fields...'] }
-            },
-            BothNotFound: {
-                type: 'object',
-                example: {
-                    errors: 'Movie | Character | Gender => not found'
-                }
-            },
-            UserConflic: {
-                type: 'object',
-                example: { errors: 'user conflict' }
-            },
-            MovieNotFound: {
-                type: 'object',
-                example: { errors: 'movie not found' }
-            },
-            MovieConflict: {
-                type: 'object',
-                example: { errors: 'movie conflict' }
-            },
-            CharacterConflict: {
-                type: 'object',
-                example: { errors: 'character conflict' }
-            },
-            CharacterNotFound: {
-                type: 'object',
-                example: { errors: 'character not found' }
-            },
-            OrderNotFound: {
-                type: 'object',
-                example: { errors: 'ASC|DESC' }
-            },
-            GenderNotFound: {
-                type: 'object',
-                example: { errors: 'gender not found' }
-            },
-            GenderConflict: {
-                type: 'object',
-                example: { errors: 'gender conflict' }
+                example: { errors: ['wrong fields...'] }
             }
         }
     },
