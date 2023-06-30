@@ -48,9 +48,9 @@ export class ModeratorController {
             if (!moderator)
                 return res.status(401).json({ errors: 'UNAUTHORIZED' });
 
-            return res.status(200).json({
-                results: await this.service.updateEmail(req.id, req.body)
-            });
+            await this.service.updateEmail(req.id, req.body);
+
+            return res.status(200).json({ results: 'MODERATOR_UPDATED' });
         } catch (error) {
             next(error);
         }
@@ -66,9 +66,9 @@ export class ModeratorController {
             if (!(await compareHash(req.body.oldPassword, moderator.password)))
                 return res.status(401).json({ errors: 'UNAUTHORIZED' });
 
-            return res.status(200).json({
-                results: await this.service.updatePassword(req.id, req.body)
-            });
+            await this.service.updatePassword(req.id, req.body);
+
+            return res.status(200).json({ results: 'MODERATOR_UPDATED' });
         } catch (error) {
             next(error);
         }

@@ -6,4 +6,8 @@ export class GUPRepository {
     constructor() {
         this.model = model(ENTITIES.GUP, GUP_SCHEMA);
     }
+
+    gup = async () => {};
+
+    gupp = async () => {};
 }

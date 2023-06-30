@@ -1,20 +1,24 @@
-import { DANRepository } from '#database/repositories/dan.repository.js';
-import { GUPRepository } from '#database/repositories/gup.repository.js';
-import { PersonRepository } from '#database/repositories/person.repository.js';
+import { ENTITIES } from '#constants/entities.js';
+import { RepositoryRegister } from '#database/repositories/repository.register.js';
 
 export class PersonService {
     constructor() {
-        this.repository = new PersonRepository();
-        this.gup = new GUPRepository();
-        this.dan = new DANRepository();
+        this.gup = ENTITIES.GUP;
+        this.dan = ENTITIES.DAN;
+        this.person = ENTITIES.PERSONS;
+        this.repository = RepositoryRegister.repositories;
     }
 
     createPerson = async (person) => {
         const studies = {
-            gup: this.gup.create()._id,
-            dan: this.dan.create()._id
+            gup: await this.repository[this.gup].createGup()._id,
+            dan: await this.repository[this.dan].createDan()._id
         };
 
-        return await this.repository.createPerson({ ...person, studies });
+        const a = await this.repository[ENTITIES.PERSONS].create({
+            ...person,
+            studies
+        });
+        console.log(a);
     };
 }

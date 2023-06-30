@@ -6,4 +6,8 @@ export class DANRepository {
     constructor() {
         this.model = model(ENTITIES.DAN, DAN_SCHEMA);
     }
+
+    dan = async (qwe) => {};
+
+    dann = async (asd) => {};
 }

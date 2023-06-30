@@ -7,24 +7,20 @@ export class ModeratorRepository {
         this.model = model(ENTITIES.MODERATORS, MODERATOR_SCHEMA);
     }
 
-    create = async (moderator) => {
-        return await this.model.create(moderator);
-    };
-
-    getBy = async (search) => {
-        return await this.model.findOne(search).lean().exec();
-    };
-
     getAllModerators = async () => {
-        return await this.model.find().exec();
+        return await this.model.find().lean().exec();
     };
 
-    getModeratorByEmail = async (email) => {
-        return await this.model.findOne({ email }).lean().exec();
+    createModerator = async (moderator) => {
+        return await this.model.create(moderator);
     };
 
     getModeratorById = async (moderatorId) => {
         return await this.model.findById(moderatorId).lean().exec();
+    };
+
+    getByModerator = async (search) => {
+        return this.model.findOne(search).lean().exec();
     };
 
     updateModerator = async (moderatorId, moderator) => {
@@ -32,9 +28,5 @@ export class ModeratorRepository {
             .findByIdAndUpdate(moderatorId, moderator, { new: true })
             .lean()
             .exec();
-    };
-
-    deleteModerator = async (moderatorId) => {
-        return await this.model.findByIdAndDelete(moderatorId).exec();
     };
 }

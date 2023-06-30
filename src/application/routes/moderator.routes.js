@@ -21,17 +21,17 @@ export class ModeratorRoutes {
 
         this.route.post('/mods/login', this.dto.login, this.ctrl.login);
 
-        this.route.get('/auth/mods', this.auth, this.ctrl.getModerator);
+        this.route.get('/mods', this.auth, this.ctrl.getModerator);
 
         this.route.post(
-            '/auth/update-email',
+            '/mods/update-email',
             this.auth,
             this.dto.updateEmail,
             this.ctrl.updateEmail
         );
 
         this.route.post(
-            '/auth/update-password',
+            '/mods/update-password',
             this.auth,
             this.dto.updateEmail,
             this.ctrl.updatePassword

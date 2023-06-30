@@ -98,7 +98,7 @@ export const moderators = {
             }
         }
     },
-    '/api/v1/auth/mods': {
+    '/api/v1/mods': {
         get: {
             summary: 'Get moderator',
             tags: ['Moderators'],
@@ -125,7 +125,7 @@ export const moderators = {
             }
         }
     },
-    '/api/v1/auth/update-email': {
+    '/api/v1/mods/update-email': {
         patch: {
             summary: 'Update moderator email',
             tags: ['Moderators'],
@@ -146,7 +146,7 @@ export const moderators = {
                     content: {
                         'application/json': {
                             schema: {
-                                $ref: '#/components/responseBodies/Moderator'
+                                $ref: '#/components/responseBodies/ModeratorUpdated'
                             }
                         }
                     }
@@ -174,7 +174,7 @@ export const moderators = {
             }
         }
     },
-    '/api/v1/auth/update-password': {
+    '/api/v1/mods/update-password': {
         patch: {
             summary: 'Update moderator password',
             tags: ['Moderators'],
@@ -195,7 +195,7 @@ export const moderators = {
                     content: {
                         'application/json': {
                             schema: {
-                                $ref: '#/components/responseBodies/Moderator'
+                                $ref: '#/components/responseBodies/ModeratorUpdated'
                             }
                         }
                     }

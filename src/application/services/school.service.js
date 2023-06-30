@@ -1,19 +1,21 @@
-import { SchoolRepository } from '#database/repositories/school.repository.js';
+import { ENTITIES } from '#constants/entities.js';
+import { RepositoryRegister } from '#database/repositories/repository.register.js';
 
 export class SchoolService {
     constructor() {
-        this.repo = new SchoolRepository();
+        this.school = ENTITIES.SCHOOLS;
+        this.repository = RepositoryRegister.repositories;
     }
 
     getSchoolByName = async (name) => {
-        return await this.repo.getBy({ name });
+        return await this.repository.getBy({ name });
     };
 
     createSchool = async (school) => {
-        return await this.repo.create(school);
+        return await this.repository.create(school);
     };
 
     updateSchoool = async (id, school) => {
-        return await this.repo.update(id, school);
+        return await this.repository.update(id, school);
     };
 }

@@ -56,7 +56,7 @@ export const DOCUMENTATION = {
             },
             ModeratorUpdated: {
                 example: {
-                    results: 'moderator updated'
+                    results: 'MODERATOR_UPDATED'
                 }
             },
             ModeratorConflict: {
@@ -67,7 +67,7 @@ export const DOCUMENTATION = {
         },
         responseErrorBodies: {
             Unauthorized: {
-                example: { errors: 'unauthorized' }
+                example: { errors: 'UNAUTHORIZED' }
             },
             WrongFields: {
                 example: { errors: ['wrong fields...'] }
