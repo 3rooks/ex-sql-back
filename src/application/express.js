@@ -1,4 +1,4 @@
-import { DOCUMENTATION } from '#utils/documentation/doc.js';
+import { swaggerDoc } from '#lib/swagger.js';
 import cors from 'cors';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
@@ -20,7 +20,7 @@ export class Express {
         this.app.use(cors());
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: false }));
-        this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(DOCUMENTATION));
+        this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
         /** ROUTES */
         this.app.use('/api/v1/', this.mod.route);

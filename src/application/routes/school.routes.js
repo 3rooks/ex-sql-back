@@ -1,4 +1,5 @@
 import { SchoolController } from '#application/controllers/school.controller.js';
+import { AuthTokenJWT } from '#application/middlewares/auth/auth.middleware.js';
 import { SchoolDTO } from '#application/middlewares/dto/school.dto.js';
 import { Router } from 'express';
 
@@ -11,6 +12,8 @@ export class SchoolRoutes {
     }
 
     init = () => {
+        this.route.use(AuthTokenJWT.auth);
+
         this.route.post('/schools', this.dto.create, this.ctrl.create);
 
         this.route.patch(
