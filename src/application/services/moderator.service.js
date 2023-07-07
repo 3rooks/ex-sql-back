@@ -34,7 +34,7 @@ export class ModeratorService {
         return await this.repository[this.moderator].updateModerator(
             moderatorId,
             {
-                password: moderator.newPassword
+                password: await createHash(moderator.newPassword)
             }
         );
     };

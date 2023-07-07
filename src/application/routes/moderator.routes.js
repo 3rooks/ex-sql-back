@@ -189,7 +189,7 @@ export class ModeratorRoutes {
         this.route.post(
             '/mods/update-password',
             this.auth,
-            this.dto.updateEmail,
+            this.dto.updatePassword,
             this.ctrl.updatePassword
         );
     };
