@@ -1,5 +1,5 @@
-import { randomUUID } from 'crypto';
 import { Schema } from 'mongoose';
+import uuid from 'uuid-random';
 import { SCHOOL_HISTORY_SCHEMA } from './sub-schemas/school-history.schema.js';
 import { SPECIALIZATION_SCHEMA } from './sub-schemas/specialization.schema.js';
 
@@ -7,7 +7,7 @@ export const PERSON_SCHEMA = new Schema(
     {
         _id: {
             type: Schema.Types.UUID,
-            default: () => randomUUID(),
+            default: () => uuid(),
             unique: true
         },
         fullname: {

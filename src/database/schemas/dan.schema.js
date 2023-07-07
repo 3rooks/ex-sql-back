@@ -1,12 +1,12 @@
-import { randomUUID } from 'crypto';
 import { Schema } from 'mongoose';
+import uuid from 'uuid-random';
 import { DAN_LVL_SCHEMA } from './sub-schemas/dan-level.schema.js';
 
 export const DAN_SCHEMA = new Schema(
     {
         _id: {
             type: Schema.Types.UUID,
-            default: () => randomUUID(),
+            default: () => uuid(),
             unique: true
         },
         first: DAN_LVL_SCHEMA,

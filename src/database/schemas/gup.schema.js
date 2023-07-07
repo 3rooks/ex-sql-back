@@ -1,12 +1,12 @@
-import { randomUUID } from 'crypto';
 import { Schema } from 'mongoose';
+import uuid from 'uuid-random';
 import { GUP_LVL_SCHEMA } from './sub-schemas/gup-level.schema.js';
 
 export const GUP_SCHEMA = new Schema(
     {
         _id: {
             type: Schema.Types.UUID,
-            default: () => randomUUID(),
+            default: () => uuid(),
             unique: true
         },
         first: GUP_LVL_SCHEMA,
