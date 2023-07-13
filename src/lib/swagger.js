@@ -16,7 +16,7 @@ const options = {
             version: '1.0.0',
             description: 'Endpoints Documentation'
         },
-        tags: ['Moderators', 'Persons', 'Schools'],
+        tags: ['Moderators', 'Persons', 'Schools', 'GUPs', 'DANs'],
         components: {
             securitySchemes: {
                 bearerAuth: {

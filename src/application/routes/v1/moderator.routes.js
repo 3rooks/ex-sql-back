@@ -46,11 +46,7 @@ export class ModeratorRoutes {
          *               $ref: '#/components/responseBodies/ModeratorConflict'
          *
          */
-        this.route.post(
-            '/mods/register',
-            this.dto.register,
-            this.ctrl.register
-        );
+        this.route.post('/register', this.dto.register, this.ctrl.register);
 
         /**
          * @swagger
@@ -85,7 +81,7 @@ export class ModeratorRoutes {
          *               $ref: '#/components/responseBodies/Unauthorized'
          *
          */
-        this.route.post('/mods/login', this.dto.login, this.ctrl.login);
+        this.route.post('/login', this.dto.login, this.ctrl.login);
 
         /**
          * @swagger
@@ -109,7 +105,7 @@ export class ModeratorRoutes {
          *               $ref: '#/components/responseBodies/Unauthorized'
          *
          */
-        this.route.get('/mods', this.auth, this.ctrl.getModerator);
+        this.route.get('/', this.auth, this.ctrl.getModerator);
 
         /**
          * @swagger
@@ -146,7 +142,7 @@ export class ModeratorRoutes {
          *
          */
         this.route.patch(
-            '/mods/update-email',
+            '/update-email',
             this.auth,
             this.dto.updateEmail,
             this.ctrl.updateEmail
@@ -187,7 +183,7 @@ export class ModeratorRoutes {
          *
          */
         this.route.patch(
-            '/mods/update-password',
+            '/update-password',
             this.auth,
             this.dto.updatePassword,
             this.ctrl.updatePassword

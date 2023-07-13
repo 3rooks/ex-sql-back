@@ -5,7 +5,7 @@ export class SchoolController {
         this.service = new SchoolService();
     }
 
-    getAll = async (req, res, next) => {
+    getAll = async (_, res, next) => {
         try {
             const results = await this.service.getAllSchools();
 
@@ -19,11 +19,12 @@ export class SchoolController {
         try {
             const exist = await this.service.getSchoolByName(req.body.name);
 
-            if (exist) return res.status(409).json(exist);
+            if (!exist) {
+                const created = await this.service.createSchool(req.body);
+                return res.status(201).json(created);
+            }
 
-            const created = await this.service.createSchool(req.body);
-
-            return res.status(201).json(created);
+            return res.status(409).json({ errors: 'SCHOOL_ALREADY_EXISTS' });
         } catch (error) {
             next(error);
         }
@@ -39,7 +40,7 @@ export class SchoolController {
             if (!school)
                 return res.status(404).json({ errors: 'SCHOOL_NOT_FOUND' });
 
-            res.status(200).json(school);
+            return res.status(200).json(school);
         } catch (error) {
             next(error);
         }

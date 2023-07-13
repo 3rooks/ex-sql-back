@@ -26,9 +26,8 @@ export class SchoolRoutes {
          *           application/json:
          *             schema:
          *               $ref: '#/components/responseBodies/School'
-         *
          */
-        this.route.get('/schools', this.ctrl.getAll);
+        this.route.get('/', this.ctrl.getAll);
 
         /**
          * @swagger
@@ -66,7 +65,6 @@ export class SchoolRoutes {
          *           application/json:
          *             schema:
          *               $ref: '#/components/responseBodies/ModeratorCreated'
-         *
          */
         this.route.put(
             '/schools/:schoolId',
@@ -90,7 +88,6 @@ export class SchoolRoutes {
          *           application/json:
          *             schema:
          *               $ref: '#/components/responseBodies/ModeratorCreated'
-         *
          */
         this.route.delete(
             '/schools/:schoolId',

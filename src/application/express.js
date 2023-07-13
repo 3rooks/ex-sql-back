@@ -2,16 +2,12 @@ import { swaggerDoc } from '#lib/swagger.js';
 import cors from 'cors';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
-import { ModeratorRoutes } from './routes/moderator.routes.js';
-import { PersonRoutes } from './routes/person.routes.js';
-import { SchoolRoutes } from './routes/school.routes.js';
+import { V1Routes } from './routes/routes.js';
 
 export class Express {
     constructor() {
         this.app = express();
-        this.mod = new ModeratorRoutes();
-        this.person = new PersonRoutes();
-        this.school = new SchoolRoutes();
+        this.v1 = new V1Routes();
         this.init();
     }
 
@@ -19,13 +15,11 @@ export class Express {
         /** MIDDLEWARES */
         this.app.use(cors());
         this.app.use(express.json());
-        this.app.use(express.urlencoded({ extended: false }));
+        this.app.use(express.urlencoded({ extended: true }));
         this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
         /** ROUTES */
-        this.app.use('/api/v1/', this.mod.route);
-        this.app.use('/api/v1/', this.person.route);
-        this.app.use('/api/v1/', this.school.route);
+        this.app.use('/api/v1', this.v1.route);
 
         /** HANDLE ERROR */
         this.app.use((err, req, res, next) => {
