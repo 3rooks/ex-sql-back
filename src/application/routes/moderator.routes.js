@@ -114,7 +114,7 @@ export class ModeratorRoutes {
         /**
          * @swagger
          * /api/v1/mods/update-email:
-         *   post:
+         *   patch:
          *     summary: Update email moderator
          *     tags: [Moderators]
          *     security: [{ bearerAuth: [] }]
@@ -145,7 +145,7 @@ export class ModeratorRoutes {
          *               $ref: '#/components/responseBodies/Unauthorized'
          *
          */
-        this.route.post(
+        this.route.patch(
             '/mods/update-email',
             this.auth,
             this.dto.updateEmail,
@@ -155,7 +155,7 @@ export class ModeratorRoutes {
         /**
          * @swagger
          * /api/v1/update-password:
-         *   post:
+         *   patch:
          *     summary: Update password moderator
          *     tags: [Moderators]
          *     security: [{ bearerAuth: [] }]
@@ -186,7 +186,7 @@ export class ModeratorRoutes {
          *               $ref: '#/components/responseBodies/Unauthorized'
          *
          */
-        this.route.post(
+        this.route.patch(
             '/mods/update-password',
             this.auth,
             this.dto.updatePassword,

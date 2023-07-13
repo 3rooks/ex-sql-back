@@ -4,7 +4,8 @@ import {
     moderatorFixture,
     updateEmailFixture,
     updatePasswordFixture
-} from '../fixtures/moderators/moderator.fixture.js';
+} from '../fixtures/moderator.fixture.js';
+import { setToken } from '../utils/get-token.js';
 
 let token;
 
@@ -33,7 +34,7 @@ describe('MODERATOR', () => {
     });
 
     it('Update moderator email succesfully', async () => {
-        const response = await got.post(
+        const response = await got.patch(
             'http://127.0.0.1:8080/api/v1/mods/update-email',
             {
                 json: updateEmailFixture,
@@ -46,7 +47,7 @@ describe('MODERATOR', () => {
     });
 
     it('Update moderator password successfully', async () => {
-        const response = await got.post(
+        const response = await got.patch(
             'http://127.0.0.1:8080/api/v1/mods/update-password',
             {
                 json: {
@@ -69,4 +70,8 @@ describe('MODERATOR', () => {
 
         expect(response.statusCode).toBe(200);
     });
+});
+
+beforeAll(async () => {
+    await setToken();
 });

@@ -69,6 +69,23 @@ const options = {
                     example: {
                         results: 'MODERATOR_EXISTS'
                     }
+                },
+                School: {
+                    example: {
+                        results: [
+                            {
+                                _id: 'string',
+                                name: 'string',
+                                director: 'string',
+                                locality: 'string',
+                                province: 'boolean',
+                                legalEntity: 'string',
+                                isActive: 'boolean',
+                                createdAt: 'Date',
+                                updatedAt: 'Date'
+                            }
+                        ]
+                    }
                 }
             }
         }

@@ -10,6 +10,7 @@ export class SchoolDTO {
             schoolIdSchemaDTO,
             req.params
         );
+
         if (!isValid)
             return res.status(400).json({
                 errors: validateFn.errors.map((error) => error.message)

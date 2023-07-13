@@ -12,7 +12,7 @@ export const schoolSchemaDTO = Type.Object(
     {
         additionalProperties: false,
         errorMessage: {
-            additionalProperties: 'Object format is invalid'
+            additionalProperties: 'Schema format is invalid'
         }
     }
 );
@@ -24,7 +24,7 @@ export const schoolIdSchemaDTO = Type.Object(
     {
         additionalProperties: false,
         errorMessage: {
-            additionalProperties: 'Object format is invalid'
+            additionalProperties: 'Schema format is invalid'
         }
     }
 );

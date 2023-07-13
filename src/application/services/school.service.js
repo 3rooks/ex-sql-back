@@ -8,14 +8,26 @@ export class SchoolService {
     }
 
     getSchoolByName = async (name) => {
-        return await this.repository.getBy({ name });
+        return await this.repository[this.school].getSchoolByName(name);
     };
 
     createSchool = async (school) => {
-        return await this.repository.create(school);
+        return await this.repository[this.school].createSchool(school);
     };
 
-    updateSchoool = async (id, school) => {
-        return await this.repository.update(id, school);
+    getAllSchools = async () => {
+        return await this.repository[this.school].getAllSchools();
+    };
+
+    updateSchool = async (id, school) => {
+        return await this.repository[this.school].updateSchool(id, school);
+    };
+
+    getSchoolById = async (id) => {
+        return await this.repository[this.school].getSchoolById(id);
+    };
+
+    deleteSchoolById = async (id) => {
+        return await this.repository[this.school].deleteSchoolById(id);
     };
 }

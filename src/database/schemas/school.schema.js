@@ -28,6 +28,10 @@ export const SCHOOL_SCHEMA = new Schema(
         legalEntity: {
             type: String,
             require: true
+        },
+        isActive: {
+            type: Boolean,
+            default: true
         }
     },
     {
