@@ -63,7 +63,7 @@ describe('MODERATOR', () => {
     });
 
     it('Get moderator info successfully', async () => {
-        const response = await got.get('http://127.0.0.1:8080/api/v1/mods', {
+        const response = await got.get('http://127.0.0.1:8080/api/v1/mods/info', {
             headers: { authorization: `Bearer ${token}` },
             throwHttpErrors: false
         });

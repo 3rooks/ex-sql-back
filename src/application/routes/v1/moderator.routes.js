@@ -85,7 +85,7 @@ export class ModeratorRoutes {
 
         /**
          * @swagger
-         * /api/v1/mods:
+         * /api/v1/mods/info:
          *   get:
          *     summary: Get moderator
          *     tags: [Moderators]
@@ -105,7 +105,7 @@ export class ModeratorRoutes {
          *               $ref: '#/components/responseBodies/Unauthorized'
          *
          */
-        this.route.get('/', this.auth, this.ctrl.getModerator);
+        this.route.get('/info', this.auth, this.ctrl.getModerator);
 
         /**
          * @swagger
